@@ -20,8 +20,8 @@
 <!-- login Form -->
 <?php
     session_start();
-    if(isset($_SESSION['nama_suket'])){
-    if($_SESSION['level_suket']=='101' && $_SESSION['active_suket']=='Y'){
+    if(isset($_SESSION['nama_login'])){
+    if($_SESSION['level_login']=='101' && $_SESSION['active_login']=='Y'){
         header('location:G');
     }
     // else if($_SESSION['level_suket']=='100' && $_SESSION['active_suket']=='Y'){
@@ -44,7 +44,7 @@
             <div class="row">
                 <!-- <div class="col-lg-6 d-none d-lg-block bg-login-hrd_vic"> -->
                 <div class="col-lg-6">
-                <img src="assets/img/.jpg" alt="Research login" class="col-lg-12 d-none d-lg-block">  
+                <img src="assets/img/logo_research.jpg" alt="Research login" class="col-lg-12 d-none d-lg-block">  
                 </div>
  
          
@@ -56,7 +56,7 @@
             </div>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <div class="form-group">
-                    <input type="number" name='nim' class="form-control form-control-user" pattern="[A-Za-z0-9]{}" placeholder="Masukan NIDN sebagai Username">
+                    <input type="number" name='nidn' class="form-control form-control-user" pattern="[A-Za-z0-9]{}" placeholder="Masukan NIDN sebagai Username">
                 </div>
                 <div class="form-group">
                     <input type="password"  name='pass' class="form-control form-control-user" id="" placeholder="Password">
@@ -120,40 +120,40 @@
 
 <?php
     if(isset($_POST['login'])){
-	$nim=$_POST['nim'];
+	$nidn=$_POST['nidn'];
 	$pass=md5($_POST['pass']);
 
-	$query="SELECT * FROM reg WHERE nim='$nim' AND pass='$pass'";
+	$query="SELECT * FROM reg WHERE nidn='$nidn' AND pass='$pass'";
 	$sql=mysqli_query($conn,$query);
 	$cek=mysqli_num_rows($sql);
 
 	if ($cek==1 ) {
 		$hasil=mysqli_fetch_array($sql);
-        $_SESSION['nim_suket']=$hasil['nim'];
-		$_SESSION['nama_suket']=$hasil['nama'];
-        $_SESSION['jk_suket']=$hasil['jk'];
-        $_SESSION['tmplahir_suket']=$hasil['tmplahir'];
-        $_SESSION['tglahir_suket']=$hasil['tglahir'];
-        $_SESSION['prodi_suket']=$hasil['prodi'];
-        $_SESSION['hp_suket']=$hasil['hp'];
-        $_SESSION['email_suket']=$hasil['email'];
-		$_SESSION['level_suket']=$hasil['level'];
-		$_SESSION['active_suket']=$hasil['active'];
+        $_SESSION['nidn_login']=$hasil['nidn'];
+		$_SESSION['nama_login']=$hasil['nama'];
+        $_SESSION['nip_login']=$hasil['jk'];
+        $_SESSION['jk_login']=$hasil['jk'];
+        $_SESSION['tmplahir_login']=$hasil['tmplahir'];
+        $_SESSION['tglahir_login']=$hasil['tglahir'];
+        $_SESSION['prodi_login']=$hasil['prodi'];
+        $_SESSION['sinta_id_login']=$hasil['sinta_id'];
+        $_SESSION['hp_login']=$hasil['hp'];
+        $_SESSION['email_login']=$hasil['email'];
+		$_SESSION['level_login']=$hasil['level'];
+		$_SESSION['active_login']=$hasil['active'];
 
-		if($_SESSION['level_suket']=='100' && $_SESSION['active_suket']=='Y'){
-            header('location:A/index.php');
-		}
-		else if($_SESSION['level_suket']=='101' && $_SESSION['active_suket']=='Y'){
+		
+		if($_SESSION['level_login']=='101' && $_SESSION['active_login']=='Y'){
 		    header('location:G/index.php');
 		}
 		else {
 			session_destroy();
-			echo "<script> alert ('User dan Pasword belum diaktifkan..! Hubungi Sub Bagian Kemahasiswaan dan Alumni FATEK'); window.location='index.php'; </script>" ;
+			echo "<script> alert ('User dan Pasword belum diaktifkan..! Hubungi admin LPPM Unpatti'); window.location='index.php'; </script>" ;
 		}
 	}
 	else{
         session_destroy();
- 		echo "<script> alert ('User dan Pasword tidak terdaftar. Hubungi Sub Bagian Kemahasiswaan dan Alumni FATEK.'); window.location='index.php'; </script>" ;
+ 		echo "<script> alert ('User dan Pasword tidak terdaftar. Hubungi admin LPPM Unpatti'); window.location='index.php'; </script>" ;
 	}
 }
 ?>

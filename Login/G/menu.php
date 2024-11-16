@@ -3,11 +3,12 @@ include '../assets/fungsi.php';
 include '../assets/indohari.php';
 
 session_start();
-if(!isset($_SESSION['nama_suket'])){
+if(!isset($_SESSION['nama_login'])){
    echo "<script> alert('Anda Belum Login'); window.location='../index.php'; </script>";
+   session_destroy();
 } 
 
-$level=$_SESSION['level_suket'];
+$level=$_SESSION['level_login'];
 if($level=='101'){
 ?>
 <!-- MenuForGuest -->
@@ -17,9 +18,9 @@ if($level=='101'){
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Aplikasi Kemahasiswaan">
+        <meta name="description" content="LPPM Unpatti">
         <meta name="author" content="Victor Pattiradjawane">
-        <title>Letter of Acknowledge</title>
+        <title>LPPM Unpatti</title>
 
         <!-- Custom fonts for this template-->
         <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,6 +33,10 @@ if($level=='101'){
 
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="../vendor/jquery/jquery.min.js"></script>
+
+         <!-- untuk memberi titik sebagai pemisah pada input harga -->
+         <script type="text/javascript" src="../vendor/js/tandapisah.js"></script>
+        <!-- endScript -->
 
         <!-- scriptJamDigital -->
         <script type="text/javascript">
@@ -72,7 +77,7 @@ if($level=='101'){
                         <!-- <i class="fas fa-laugh-wink"></i> -->
                         <img src="../assets/img/unpattilogo.png" width="50px" alt="">
                     </div>
-                    <div class="sidebar-brand-text mx-3">Student Affairs<sup></sup></div>
+                    <div class="sidebar-brand-text mx-3">LPPM Unpatti<sup></sup></div>
                 </a>
 
                 <!-- Divider -->
@@ -90,7 +95,7 @@ if($level=='101'){
 
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    Surat Permohonan
+                    Pengajuan Proposal
                 </div>
 
                 <!-- Nav Item - statistik Collapse Menu -->
@@ -102,10 +107,9 @@ if($level=='101'){
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Surat Keterangan:</h6>
-                            <a class="collapse-item" href="ak.php"> Aktif Kuliah</a>
-                            <a class="collapse-item" href="ktm.php">KTM Sementara</a>
-                            <a class="collapse-item" href="rb.php">Rekomendasi Beasiswa</a>
+                            <h6 class="collapse-header">Proposal:</h6>
+                            <a class="collapse-item" href="propen.php"> Penelitian</a>
+                            <a class="collapse-item" href="propeng.php">Pengabdian</a>
                             <!-- <a class="collapse-item" href="#">Lainnya</a> -->
                         </div>
                     </div>
@@ -116,16 +120,24 @@ if($level=='101'){
 
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    Status Permohonan
+                    Status Pengajuan Proposal
                 </div>
 
-                <!-- Nav Item - pribadi Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="cs.php" 
-                        aria-expanded="true" aria-controls="collapseUtilities">
-                        <i class="fas fa-fw fa-folder"></i>
+                 <!-- Nav Item - statistik Collapse Menu -->
+                 <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCek"
+                        aria-expanded="true" aria-controls="collapseCek">
+                        <i class="fas fa-edit fa-chart-area"></i>
                         <span>Cek Status</span>
                     </a>
+                    <div id="collapseCek" class="collapse" aria-labelledby="headingCek" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Proposal:</h6>
+                            <a class="collapse-item" href="csPen.php"> Penelitian</a>
+                            <a class="collapse-item" href="csPeng.php">Pengabdian</a>
+                            <!-- <a class="collapse-item" href="#">Lainnya</a> -->
+                        </div>
+                    </div>
                 </li>
 
                 <!-- Divider -->
@@ -170,17 +182,17 @@ if($level=='101'){
                 <div id="topNavBar">
 
                     <!-- Topbar -->
-                    <nav class="navbar navbar-expand navbar-dark bg-primary topbar mb-1 static-top shadow">
+                    <nav class="navbar navbar-expand navbar-dark bg-info topbar mb-1 static-top shadow">
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-warning btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
-                    <h6 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 text-white">Letter of Acknowledge </h6>
+                    <h6 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 text-white">Pengajuan Proposal </h6>
                     
                         <!-- Topbar Navbar -->
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <ul class='navbar-nav text-white'>
-                            <li class="nav-item no-arrow d-sm-none">Student Affairs  <sup></sup></li>
+                            <li class="nav-item no-arrow d-sm-none">LPPM Unpatti <sup></sup></li>
                         </ul>
 
                         <ul class="navbar-nav ml-auto">
@@ -190,7 +202,7 @@ if($level=='101'){
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-white-500 small"><?php echo $_SESSION['nama_suket'];  ?></span>
+                                    <span class="mr-2 d-none d-lg-inline text-white-500 small"><?php echo $_SESSION['nama_login'];  ?></span>
                                     <!-- <img class="img-profile rounded-circle" src="../assets/images/<?php echo $hasilU['foto'];  ?>"> -->
                                     <img class='img-profile rounded-circle' src='../vendor/img/undraw_profile.svg'>
                                 </a>
@@ -224,6 +236,7 @@ if($level=='101'){
 <?php } 
 else {
     echo "<script> alert('Anda Tidak punya akses ke Halaman ini.'); window.location='../index.php'; </script>";
+    session_destroy();
     exit;
 }
 ?>

@@ -41,7 +41,7 @@ function view($conn){ ?>
 		<thead>
 			<tr class="bg-primary text-center">
 				<th>No.</th>
-				<th>NIM</th>
+				<th>NIP</th>
 				<th>Nama Lengkap</th>
         <th> Handphone </th>
 				<th>Level</th>
@@ -58,14 +58,14 @@ function view($conn){ ?>
 		?>
 			<tr>
 				<td> <?php echo $no;  ?></td>
-				<td><?php echo $hasil['nim']; ?></td>
+				<td><?php echo $hasil['nip']; ?></td>
 				<td><?php echo $hasil['nama']; ?></td>
         <td><?php echo $hasil['hp']; ?></td>
 				<td><?php echo $hasil['level'];  ?></td>
 				<td><?php echo $hasil['active'];  ?></td>
-				<td class='text-center' > <a href='mu.php?aksi=edit&n= <?php echo $hasil['nim'] ;?> ' class='btn-sm btn-warning fas fa-edit' > edit</a>
+				<td class='text-center' > <a href='mu.php?aksi=edit&n= <?php echo $hasil['nip'] ;?> ' class='btn-sm btn-warning fas fa-edit' > edit</a>
      
-           		<a href="mu.php?aksi=delete&nim=<?php echo $hasil['nim'] ;?>" class="btn-sm btn-danger fas fa-trash-alt mt-2" onclick="javascript:return confirm('Anda Yakin menghapus data ini?')" > hapus </a> 
+           		<a href="mu.php?aksi=delete&nip=<?php echo $hasil['nip'] ;?>" class="btn-sm btn-danger fas fa-trash-alt mt-2" onclick="javascript:return confirm('Anda Yakin menghapus data ini?')" > hapus </a> 
 				</td>
 			</tr>
 		
@@ -92,7 +92,7 @@ function edit($conn){  ?>
 	</div>
 <?php	
 $n=$_GET['n'];
-$query="SELECT * FROM reg where nim=$n";
+$query="SELECT * FROM reg where nip=$n";
 $sql=mysqli_query($conn,$query);
 $hasil=mysqli_fetch_array($sql);
 ?>
@@ -102,8 +102,8 @@ $hasil=mysqli_fetch_array($sql);
   <div class="card-header bg-primary text-white text-center h5">Edit User Account</div>
   <div class="card-body">
   <form method="POST" action="" enctype="multipart/form-data">  
- 		 <label for="nim" class="">NIM:</label>
-         <input name="nim" type="number" class="form-control" id="nim" placeholder="NIM/ NIP" value="<?php echo $hasil['nim']; ?>">
+ 		 <label for="nip" class="">nip:</label>
+         <input name="nip" type="number" class="form-control" id="nip" placeholder="NIP" value="<?php echo $hasil['nip']; ?>">
          <br>       
   		<label for="nama" class="">Nama:</label>
          <input name="nama" type="text" class="form-control" id="nama" placeholder="Nama Lengkap" value="<?php echo $hasil['nama']; ?>">
@@ -111,8 +111,8 @@ $hasil=mysqli_fetch_array($sql);
        
          <label for='level'>Level</label>
          <select name="level" id="level" class="form-control">
-            <option value="100" <?php if($hasil['level']=='100'){echo 'selected';} ?>>Administrator</option>
-            <option value="101" <?php if($hasil['level']=='101'){echo 'selected';}  ?>>User</option>
+            <option value="101" <?php if($hasil['level']=='101'){echo 'selected';} ?>>Administrator</option>
+            <option value="100" <?php if($hasil['level']=='100'){echo 'selected';}  ?>>User</option>
          </select>
          
          <br>
@@ -145,23 +145,23 @@ $hasil=mysqli_fetch_array($sql);
 //proses edit data  
 if (isset($_POST['ubah']))
 {
-    $nim = $_POST['nim'];
+    $nip = $_POST['nip'];
     $nama = $_POST['nama'];
     $level=$_POST['level'];
     $active=$_POST['active'];
    
-   $query = "UPDATE reg set nim='$nim', nama='$nama', level='$level', active='$active' WHERE nim=$n ";
+   $query = "UPDATE reg set nip='$nip', nama='$nama', level='$level', active='$active' WHERE nip=$n ";
 
    $sql= mysqli_query($conn,$query);
 
    if(isset($_POST['klikubah'])){
       $newpass=md5($_POST['inputpassword']);
-      $nim = $_POST['nim'];
+      $nip = $_POST['nip'];
       $nama = $_POST['nama'];
       $level=$_POST['level'];
       $active=$_POST['active'];
 
-      $query2 = "UPDATE reg set nim='$nim', nama='$nama', pass='$newpass', level='$level', active='$active' WHERE nim=$n";
+      $query2 = "UPDATE reg set nip='$nip', nama='$nama', pass='$newpass', level='$level', active='$active' WHERE nip=$n";
 
       $sql2= mysqli_query($conn,$query2);
 
@@ -190,9 +190,9 @@ else {
 <!-- hapus data -->
 <?php 
 function delete($conn){
-    if(isset($_GET['aksi']) && isset($_GET['nim']) ){
-        $nim=$_GET['nim'];
-        $queri="DELETE FROM reg WHERE nim=$nim ";
+    if(isset($_GET['aksi']) && isset($_GET['nip']) ){
+        $nip=$_GET['nip'];
+        $queri="DELETE FROM reg WHERE nip=$nip ";
         $sql=mysqli_query($conn,$queri);
 
         if($sql){

@@ -8,7 +8,7 @@ if(!isset($_SESSION['nama_admin'])){
 } 
 
 $level=$_SESSION['level_admin'];
-if($level=='100'){
+if($level=='101'){
     ?>
     <!-- MenuForAdmin -->
     <!DOCTYPE html>
@@ -17,9 +17,9 @@ if($level=='100'){
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Aplikasi Kemahasiswaan">
+        <meta name="description" content="Aplikasi LPPM">
         <meta name="author" content="Victor Pattiradjawane">
-        <title>Letter of Acknowledge</title>
+        <title>Sistem Informasi LPPM</title>
 
         <!-- Custom fonts for this template-->
         <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -73,7 +73,7 @@ if($level=='100'){
                         <!-- <i class="fas fa-laugh-wink"></i> -->
                         <img src="../assets/img/unpattilogo.png" width="50px" alt="">
                     </div>
-                    <div class="sidebar-brand-text mx-3">Student Affairs<sup></sup></div>
+                    <div class="sidebar-brand-text mx-3">Administrator LPPM<sup></sup></div>
                 </a>
 
                 <!-- Divider -->
@@ -90,11 +90,11 @@ if($level=='100'){
                 <hr class="sidebar-divider">
 
                 <!-- Heading -->
-                <div class="sidebar-heading">
-                    Statistik Surat Keterangan
-                </div>
+                <!-- <div class="sidebar-heading">
+                    Statistik
+                </div> -->
                 <!-- Nav Item - statistik Collapse Menu -->
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                         aria-expanded="true" aria-controls="collapseOne">
                         <i class="fas fa-fw fa-chart-area"></i>
@@ -103,25 +103,31 @@ if($level=='100'){
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Statistik berdasarkan:</h6>
-                            <a class="collapse-item" href="sta_ak.php">Surat Aktif Kuliah</a>
-                            <a class="collapse-item" href="sta_ktm.php">Surat KTM Sementara</a>
-                            <a class="collapse-item" href="sta_rb.php">Surat Rekomendasi</a>
+                            <a class="collapse-item" href="sta_ak.php">Proposal Penelitian</a>
+                            <a class="collapse-item" href="sta_ktm.php">Proposal Pengabdian</a>
+                             <a class="collapse-item" href="sta_rb.php">Surat Rekomendasi</a>
                         </div>
                     </div>
-                </li>
+                </li> -->
 
                 <!-- Divider -->
-                <hr class="sidebar-divider">
+                <!-- <hr class="sidebar-divider"> -->
 
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    Permohonan Surat Keterangan
+                    Pengajuan Proposal
                 </div>
                 <!-- Nav Item - statistik Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="spak.php" aria-expanded="true" aria-controls="collapseTwo">
+                    <a class="nav-link collapsed" href="list_Research.php" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-edit fa-chart-area"></i>
-                        <span>Lihat Surat Permohonan</span>
+                        <span>Proposal Penelitian</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="spak.php" aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-search fa-chart-area"></i>
+                        <span>Proposal Pengabdian</span>
                     </a>
                 </li>
 
@@ -193,12 +199,12 @@ if($level=='100'){
                     <button id="sidebarToggleTop" class="btn btn-warning btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
-                    <h6 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 text-white">Letter of Acknowledge </h6>
+                    <h6 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 text-white">LPPM Information System </h6>
                     
                         <!-- Topbar Navbar -->
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <ul class='navbar-nav text-white'>
-                            <li class="nav-item no-arrow d-sm-none">Student Affairs  <sup></sup></li>
+                            <li class="nav-item no-arrow d-sm-none"> LPPM Information system <sup></sup></li>
                         </ul>
 
                         <ul class="navbar-nav ml-auto">

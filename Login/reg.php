@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Student Affairs</title>
+    <title>Sistem informasi LPPM</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -29,8 +29,8 @@
                     </div>
                     <form method="POST" action="" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="nim">NIM :</label>
-                            <input type="number" min="1" class="form-control" id='nim' name='nim' placeholder="" required>
+                            <label for="nidn">NIDN :</label>
+                            <input type="number" min="1" class="form-control" id='nidn' name='nidn' placeholder="" required>
                         </div>
                         <div class="form-group">
                             <label for="pass">Password untuk login</label>
@@ -39,6 +39,46 @@
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" class="form-control " name="nama" id='nama' placeholder="" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nip">NIP :</label>
+                            <input type="number" min="1" class="form-control" id='nip' name='nip' placeholder="" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fakultas">Fakultas</label>
+                            <select name="fakultas" class="form-control" id='fakultas' required>
+                                <option value=''> --Pilih Fakultas-- </option>
+                                <?php 
+                                    $queryFak="SELECT * From mstr_fakultas";
+                                    $sqlFak= mysqli_query($conn,$queryFak);
+                                    while ($hasilFak = mysqli_fetch_array($sqlFak))
+                                    {
+                                    echo "<option value='".$hasilFak['id_fakultas']."' >" .$hasilFak['fakultas']. "</option>";
+                                    }
+                                ?>
+                            </select> 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prodi">Program Studi</label>
+                            <select name="prodi" class="form-control" id='prodi' required>
+                                <option value=''> --Pilih Program Studi-- </option>
+                                <?php 
+                                    $queryProdi="SELECT * From mstr_prodi";
+                                    $sqlProdi= mysqli_query($conn,$queryProdi);
+                                    while ($hasilProdi = mysqli_fetch_array($sqlProdi))
+                                    {
+                                    echo "<option value='".$hasilProdi['id_prodi']."' >" .$hasilProdi['prodi']. "</option>";
+                                    }
+                                ?>
+                            </select> 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sinta_id">Sinta_ID :</label>
+                            <input type="number" min="1" class="form-control" id='sinta_id' name='sinta_id' placeholder="" required>
                         </div>
                     
                         <div class="form-group">
@@ -50,27 +90,14 @@
                                 </select>
                             </div>
                         <div class="form-group">
-                            <label for="tmplhr">Tempat lahir</label>
-                            <input type="text" class="form-control " name="tmplhr" id='tmplhr' placeholder="" required>
+                            <label for="tmplahir">Tempat lahir</label>
+                            <input type="text" class="form-control " name="tmplahir" id='tmplahir' placeholder="" required>
                         </div>
                         <div class="form-group">
-                            <label for="tglhr">Tanggal Lahir</label>
-                            <input type="date" class="form-control " name="tglhr" id='tglhr' placeholder="" required>
+                            <label for="tglahir">Tanggal Lahir</label>
+                            <input type="date" class="form-control " name="tglahir" id='tglahir' placeholder="" required>
                         </div>
-                        <div class="form-group">
-                            <label for="prodi">Program Studi</label>
-                            <select name="prodi" class="form-control" id='prodi' required>
-                                <option value=''> --Pilih Program Studi-- </option>
-                                <?php 
-                                    $query="SELECT * From prodi";
-                                    $sql= mysqli_query($conn,$query);
-                                    while ($hasil = mysqli_fetch_array($sql))
-                                    {
-                                    echo "<option value='".$hasil['id_prodi']."' >" .$hasil['prodi']. "</option>";
-                                    }
-                                ?>
-                            </select> 
-                        </div>
+                     
 
                         <div class="form-group">
                             <label for="hp">Nomor Handphone</label>
@@ -115,18 +142,22 @@
 <?php
 include 'link.php';
 if (isset($_POST['simpan'])) {
-    $nim=$_POST['nim'];
+    $nidn=$_POST['nidn'];
     $pass=MD5($_POST['pass']);
     $nama=$_POST['nama'];
-    $jk=$_POST['jk'];
-    $tmplhr=$_POST['tmplhr'];
-    $tglhr=$_POST['tglhr'];
+    $nip=$_POST['nip'];
+    $fakultas=$_POST['fakultas'];
     $prodi=$_POST['prodi'];
+    $sinta_id=$_POST['sinta_id'];
+    $jk=$_POST['jk'];
+    $tmplahir=$_POST['tmplahir'];
+    $tglahir=$_POST['tglahir'];
     $hp=$_POST['hp'];
     $email=$_POST['email'];
-   
-    $query="INSERT INTO reg (nim,pass,nama,jk,tmplahir,tglahir,prodi,hp,email) VALUES ('$nim','$pass','$nama','$jk','$tmplhr','$tglhr','$prodi','$hp','$email')";
-    $sql=mysqli_query($conn,$query);
+
+    $queryReg="INSERT INTO reg (nidn, pass, nama, nip, fakultas, prodi, sinta_id, jk, tmplahir, tglahir, hp, email, level, active) VALUES ('$nidn','$pass','$nama','$nip','$fakultas','$prodi','$sinta_id','$jk','$tmplahir','$tglahir','$hp','$email','101','N')";
+
+    $sql=mysqli_query($conn,$queryReg);
 
 
     if($sql){

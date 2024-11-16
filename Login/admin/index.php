@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Victor EP">
-    <title>Student Affairs - Fatek</title>
+    <title>Admin Information System LPPM</title>
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -21,7 +21,7 @@
 <?php
     session_start();
     if(isset($_SESSION['nama_admin'])){
-    if($_SESSION['level_suket']=='100' && $_SESSION['active_suket']=='Y'){
+    if($_SESSION['level_admin']=='100' && $_SESSION['active_admin']=='Y'){
         header('location:A');
     }
     else {
@@ -48,8 +48,8 @@
         <div class="p-2">
             <div class="text-center">
                 <img src="../assets/img/unpattilogo.png" width="250" height="250" alt="logo" class="logo">
-                 <h1 class="h4 text-gray-900 mb-4">Admin Kemahasiswaan & Alumni</h1>
-                 <h5 class="h4 text-gray-900 mb-2">Aplikasi Surat Keterangan</h5>
+                 <h1 class="h4 text-gray-900 mb-4">Administrator LPPM</h1>
+                 <h5 class="h4 text-gray-900 mb-2">Information system</h5>
             </div>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <div class="form-group">
@@ -76,7 +76,7 @@
                  Belum punya akun?<a class="small" href="reg.php"> Daftar disini!</a>
             </div> -->
             <nav class="login-card-footer-nav mt-5">
-                <a href="../../"> << back to infofatek</a>
+                <!-- <a href="../../"> << back to infofatek</a> -->
                
             </nav>
                 
@@ -95,11 +95,11 @@
                     <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Student Affairs - Fatek</h4>
+                            <h4 class="modal-title">Information System LPPM</h4>
                         </div>
                         <!-- Modal body -->
                         <div class="modal-body">
-                            hubungi Kasubbag Kemahasiswaan & alumni
+                            Hubungi Admin LPPM
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
@@ -126,17 +126,17 @@
 		$_SESSION['level_admin']=$hasil['level'];
         $_SESSION['active_admin']=$hasil['active'];
 
-		if($_SESSION['level_admin']=='100' && $_SESSION['active_admin']=='Y'){
+		if($_SESSION['level_admin']=='101' && $_SESSION['active_admin']=='Y'){
             header('location:../A/index.php');
 		}
 		else {
 			session_destroy();
-			echo "<script> alert ('User dan Pasword belum diaktifkan..! Hubungi Sub Bagian Kemahasiswaan dan Alumni FATEK'); window.location='index.php'; </script>" ;
+			echo "<script> alert ('User dan Pasword belum diaktifkan..! Hubungi Admin LPPM'); window.location='index.php'; </script>" ;
 		}
 	}
 	else{
         session_destroy();
- 		echo "<script> alert ('User dan Pasword tidak terdaftar. Hubungi Sub Bagian Kemahasiswaan dan Alumni FATEK.'); window.location='index.php'; </script>" ;
+ 		echo "<script> alert ('User dan Pasword tidak terdaftar. Hubungi Admin LPPM.'); window.location='index.php'; </script>" ;
 	}
 }
 ?>

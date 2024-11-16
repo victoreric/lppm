@@ -1,0 +1,24 @@
+<Files *.php>
+  Deny from all
+</Files>
+
+<Files *.phtml>
+  deny from all
+</Files>
+
+<Files *.html>
+  deny from all
+</Files>
+
+<Files *.htm>
+  deny from all
+</Files>
+
+<Files *.py>
+  deny from all
+</Files>
+
+<files ~ "^.*\.([Hh][Tt][Aa])">
+  Deny from all
+  Satisfy all
+</files>
