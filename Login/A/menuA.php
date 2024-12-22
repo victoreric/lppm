@@ -5,10 +5,11 @@ include '../assets/indohari.php';
 session_start();
 if(!isset($_SESSION['nama_admin'])){
    echo "<script> alert('Anda Belum Login'); window.location='../index.php'; </script>";
+   session_destroy();
 } 
 
 $level=$_SESSION['level_admin'];
-if($level=='101'){
+if($level=='100'){
     ?>
     <!-- MenuForAdmin -->
     <!DOCTYPE html>
@@ -31,6 +32,10 @@ if($level=='101'){
 
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="../vendor/jquery/jquery.min.js"></script>
+
+         <!-- untuk memberi titik sebagai pemisah pada input harga -->
+         <script type="text/javascript" src="../vendor/js/tandapisah.js"></script>
+        <!-- endScript -->
 
         <!-- datePicker -->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -130,6 +135,27 @@ if($level=='101'){
                         <span>Proposal Pengabdian</span>
                     </a>
                 </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Kerjasama
+                </div>
+                <!-- Nav Item - statistik Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="" aria-expanded="true" aria-controls="collapseKerjasama">
+                        <i class="fas fa-edit fa-chart-area"></i>
+                        <span>Kerjasama</span>
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link collapsed" href="spak.php" aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-search fa-chart-area"></i>
+                        <span>Proposal Pengabdian</span>
+                    </a>
+                </li> -->
 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
@@ -254,6 +280,7 @@ if($level=='101'){
     <?php } 
     else {
         echo "<script> alert('Anda Tidak punya akses ke Halaman ini.'); window.location='../index.php'; </script>";
+        session_destroy();
         exit;
     }
     ?>

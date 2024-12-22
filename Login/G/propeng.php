@@ -15,7 +15,7 @@
 
 <div class="container">
 <div class="card">
-  <div class="card-header text-center">Proposal Pengabdian</div>
+  <div class="card-header text-center">Proposal Pengabdian kepada Masyarakat</div>
   <div class="card-body">
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="panel-body">
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="judul" class="form-control-label">Judul Pengabdian </label>
+                    <label for="judul" class="form-control-label">Judul Pengabdian kepada Masyarakat</label>
                     <input type="text" class="form-control" id="judul" placeholder="" name="judul" required>
                 </div>
 
@@ -78,84 +78,196 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="dana_disetujui" class="form-control-label">Dana Disetujui (Rp.)</label>
-                    <input type="text" class="form-control" id="dana_disetujui" placeholder="" name="dana_disetujui" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);" required>
+                    <label for="bidang_fokus" class="form-control-label">Bidang Fokus</label>
+                    <select name="bidang_fokus" id='bidang_fokus' class="form-control" required >
+                        <option value=''>-- Pilih bidang fokus --</option>
+                        <option>Kemandirian Pangan</option>
+                        <option>Penciptaan Dan Pemanfaatan Energi Baru Dan Terbarukan </option>
+                        <option>Pengembangan Teknologi Kesehatan Dan Obat </option>
+                        <option>Pengembangan Teknologi Dan Manajemen Transportasi </option>
+                        <option>Teknologi Informasi Dan Komunikasi </option>
+                        <option>Pengembangan Teknologi Pertahanan Dan Keamanan</option>
+                        <option>Material Maju </option>
+                        <option>Kemaritiman </option>
+                        <option>Teknologi Manajemen Penanggulangan Kebencanaan </option>
+                        <option> Sosial Humaniora- Seni Budaya-Pendidikan</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="nama_member1" class="form-control-label">Nama Anggota Ke-1</label>
-                    <input type="text" class="form-control" id="nama_member1" placeholder="" name="nama_member1">
+                    <label for="nama_skema" class="form-control-label">Skema</label>
+                    <select name="nama_skema" id='nama_skema' class="form-control" required >
+                        <!-- <option value=''>-- Pilih nama skema --</option> -->
+                        <option>Pengabdian Berbasis Masyarakat (PBM)</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="nidn_member1" class="form-control-label">NIDN Anggota Ke-1</label>
-                    <input type="text" class="form-control" id="nidn_member1" placeholder="" name="nidn_member1">
+                    <label for="sub_skema" class="form-control-label">Sub Skema</label>
+                    <select name="sub_skema" id='sub_skema' class="form-control" required >
+                        <option value=''>-- Pilih sub skema --</option>
+                        <option>Program Pengabdian Mandiri (PMD)</option>
+                        <option>Program Dosen Mengabdi (DMD)</option>
+                        <option>Program Pemberdayaan Masyarakat (PMS)</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="sinta_id_member1" class="form-control-label">Sinta_ID Anggota Ke-1</label>
-                    <input type="text" class="form-control" id="sinta_id_member1" placeholder="" name="sinta_id_member1">
+                    <label for="dana_usulan" class="form-control-label">Dana yang diusulkan (Rp.)</label>
+                    <input type="text" class="form-control" id="dana_usulan" placeholder="" name="dana_usulan" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="nama_member2" class="form-control-label">Nama Anggota Ke-2</label>
-                    <input type="text" class="form-control" id="nama_member2" placeholder="" name="nama_member2">
+                    <label for="target_tkt" class="form-control-label">Target Kesiapan Teknologi (TKT)</label>
+                    <select name="target_tkt" id='target_tkt' class="form-control" required >
+                        <option value=''>-- Pilih Target TKT --</option>
+                        <option>TKT 1 - Prinsip dasar dari teknologi telah diteliti dan dilaporkan</option>
+                        <option>TKT 2 - Formulasi Konsep teknologi dan aplikasinya</option>
+                        <option>TKT 3 - Pembuktian konsep (proof-of-concept) fungsi dan/atau karakteristik penting secara analitis dan eksperimental</option>
+                        <option>TKT 4 - Validasi komponen/subsistem dalam lingkungan laboratorium </option>
+                        <option>TKT 5 - Validasi komponen/subsistem dalam lingkungan yang relevan</option>
+                        <option>TKT 6 - Demonstrasi Model atau Prototipe Sistem/ Subsistem dalam lingkungan yang relevan</option>
+                        <option>TKT 7 - Demonstrasi prototipe sistem dalam lingkungan/aplikasi sebenarnya</option>
+                        <option>TKT 8 - Sistem telah lengkap dan memenuhi syarat (qualified) melalui pengujian dan demonstrasi dalam lingkungan/ aplikasi sebenarnya</option>
+                        <option>TKT 9 - Sistem benar-benar teruji/terbukti melalui keberhasilan pengoperasian</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="nidn_member2" class="form-control-label">NIDN Anggota Ke-2</label>
-                    <input type="text" class="form-control" id="nidn_member2" placeholder="" name="nidn_member2">
+                    <label for="kategori_sumber_dana" class="form-control-label">Kategori Sumber Dana</label>
+                    <select name="kategori_sumber_dana" id='kategori_sumber_dana' class="form-control" required >
+                        <option value=''>-- Pilih sumber dana --</option>
+                        <option>Luar Negeri</option>
+                        <option>Pemerintah</option>
+                        <option>Perusahaan/ Organisasi Swasta</option>
+                        <option>Institusi Internal </option>
+                        <option>Mandiri</option>
+                    </select>
                 </div>
 
+                <!-- add new member as lecturer -->
                 <div class="form-group">
-                    <label for="sinta_id_member2" class="form-control-label">Sinta_ID Anggota Ke-2</label>
-                    <input type="text" class="form-control" id="sinta_id_member2" placeholder="" name="sinta_id_member2">
-                </div>
+                    <label for="accordion" class="form-control-label">Tambahkan Anggota </label>
 
-                <div class="form-group">
-                    <label for="nama_member3" class="form-control-label">Nama Anggota Ke-3</label>
-                    <input type="text" class="form-control" id="nama_member3" placeholder="" name="nama_member3">
-                </div>
+                <div id="accordion">
+                    <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                        Tambahkan nama-nama Dosen sebagai anggota
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="nama_member1" class="form-control-label">Nama Anggota Ke-1</label>
+                                <input type="text" class="form-control" id="nama_member1" placeholder="" name="nama_member1" required>
+                            </div>
 
-                <div class="form-group">
-                    <label for="nidn_member3" class="form-control-label">NIDN Anggota Ke-3</label>
-                    <input type="text" class="form-control" id="nidn_member3" placeholder="" name="nidn_member3">
-                </div>
+                            <div class="form-group">
+                                <label for="nidn_member1" class="form-control-label">NIDN Anggota Ke-1</label>
+                                <input type="text" class="form-control" id="nidn_member1" placeholder="" name="nidn_member1" required>
+                            </div>
 
-                <div class="form-group">
-                    <label for="sinta_id_member3" class="form-control-label">Sinta_ID Anggota Ke-3</label>
-                    <input type="text" class="form-control" id="sinta_id_member3" placeholder="" name="sinta_id_member3">
-                </div>
+                            <div class="form-group">
+                                <label for="sinta_id_member1" class="form-control-label">Sinta_ID Anggota Ke-1</label>
+                                <input type="text" class="form-control" id="sinta_id_member1" placeholder="" name="sinta_id_member1">
+                            </div>
 
-                <div class="form-group">
-                    <label for="nama_member4" class="form-control-label">Nama Anggota Ke-4</label>
-                    <input type="text" class="form-control" id="nama_member4" placeholder="" name="nama_member4">
-                </div>
+                            <div class="form-group">
+                                <label for="nama_member2" class="form-control-label">Nama Anggota Ke-2</label>
+                                <input type="text" class="form-control" id="nama_member2" placeholder="" name="nama_member2">
+                            </div>
 
-                <div class="form-group">
-                    <label for="nidn_member4" class="form-control-label">NIDN Anggota Ke-4</label>
-                    <input type="text" class="form-control" id="nidn_member4" placeholder="" name="nidn_member4">
-                </div>
+                            <div class="form-group">
+                                <label for="nidn_member2" class="form-control-label">NIDN Anggota Ke-2</label>
+                                <input type="text" class="form-control" id="nidn_member2" placeholder="" name="nidn_member2">
+                            </div>
 
-                <div class="form-group">
-                    <label for="sinta_id_member4" class="form-control-label">Sinta_ID Anggota Ke-4</label>
-                    <input type="text" class="form-control" id="sinta_id_member4" placeholder="" name="sinta_id_member4">
-                </div>
+                            <div class="form-group">
+                                <label for="sinta_id_member2" class="form-control-label">Sinta_ID Anggota Ke-2</label>
+                                <input type="text" class="form-control" id="sinta_id_member2" placeholder="" name="sinta_id_member2">
+                            </div>
 
-                <div class="form-group">
-                    <label for="nama_member5" class="form-control-label">Nama Anggota Ke-5</label>
-                    <input type="text" class="form-control" id="nama_member5" placeholder="" name="nama_member5">
-                </div>
+                            <div class="form-group">
+                                <label for="nama_member3" class="form-control-label">Nama Anggota Ke-3</label>
+                                <input type="text" class="form-control" id="nama_member3" placeholder="" name="nama_member3">
+                            </div>
 
-                <div class="form-group">
-                    <label for="nidn_member5" class="form-control-label">NIDN Anggota Ke-5</label>
-                    <input type="text" class="form-control" id="nidn_member5" placeholder="" name="nidn_member5">
-                </div>
+                            <div class="form-group">
+                                <label for="nidn_member3" class="form-control-label">NIDN Anggota Ke-3</label>
+                                <input type="text" class="form-control" id="nidn_member3" placeholder="" name="nidn_member3">
+                            </div>
 
-                <div class="form-group">
-                    <label for="sinta_id_member5" class="form-control-label">Sinta_ID Anggota Ke-5</label>
-                    <input type="text" class="form-control" id="sinta_id_member5" placeholder="" name="sinta_id_member5">
+                            <div class="form-group">
+                                <label for="sinta_id_member3" class="form-control-label">Sinta_ID Anggota Ke-3</label>
+                                <input type="text" class="form-control" id="sinta_id_member3" placeholder="" name="sinta_id_member3">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nama_member4" class="form-control-label">Nama Anggota Ke-4</label>
+                                <input type="text" class="form-control" id="nama_member4" placeholder="" name="nama_member4">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nidn_member4" class="form-control-label">NIDN Anggota Ke-4</label>
+                                <input type="text" class="form-control" id="nidn_member4" placeholder="" name="nidn_member4">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sinta_id_member4" class="form-control-label">Sinta_ID Anggota Ke-4</label>
+                                <input type="text" class="form-control" id="sinta_id_member4" placeholder="" name="sinta_id_member4">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nama_member5" class="form-control-label">Nama Anggota Ke-5</label>
+                                <input type="text" class="form-control" id="nama_member5" placeholder="" name="nama_member5">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nidn_member5" class="form-control-label">NIDN Anggota Ke-5</label>
+                                <input type="text" class="form-control" id="nidn_member5" placeholder="" name="nidn_member5">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sinta_id_member5" class="form-control-label">Sinta_ID Anggota Ke-5</label>
+                                <input type="text" class="form-control" id="sinta_id_member5" placeholder="" name="sinta_id_member5">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="card">
+                    <div class="card-header">
+                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                        Tambahkan nama-nama Mahasiswa sebagai anggota
+                    </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                             <label for="nama_mhs1" class="form-control-label">Nama Mahasiswa Ke-1</label>
+                             <input type="text" class="form-control" id="nama_mhs1" placeholder="" name="nama_mhs1" required>
+
+                             <label for="nim_mhs1" class="form-control-label">NIM Mahasiswa Ke-1</label>
+                                <input type="text" class="form-control" id="nim_mhs1" placeholder="" name="nim_mhs1" required>
+
+                            <label for="nama_mhs2" class="form-control-label">Nama Mahasiswa Ke-2</label>
+                             <input type="text" class="form-control" id="nama_mhs2" placeholder="" name="nama_mhs2">
+                             <label for="nim_mhs2" class="form-control-label">NIM Mahasiswa Ke-2</label>
+                            <input type="text" class="form-control" id="nim_mhs2" placeholder="" name="nim_mhs2">
+
+                            <label for="nama_mhs3" class="form-control-label">Nama Mahasiswa Ke-3</label>
+                             <input type="text" class="form-control" id="nama_mhs3" placeholder="" name="nama_mhs3">
+                             <label for="nim_mhs3" class="form-control-label">NIM Mahasiswa Ke-2</label>
+                            <input type="text" class="form-control" id="nim_mhs3" placeholder="" name="nim_mhs3">
+                       
+                        </div>
+                    </div>
+                    </div>
+
                 </div>
+               
+                </div>
+                <!-- End add new member as lecturer -->
 
                 <div class="card mb-3">
                     <div class="card-header bg-warning p-2"><h6>Upload Proposal Pengabdian</h6>
@@ -185,7 +297,7 @@
             <hr>  
                 <div class="panel-footer mt-5 text-center">
                     <button type="submit" name='simpan' class="btn btn-success  mr-5">Simpan</button>
-                    <a href="propeng.php" class="btn btn-danger">Batal</a>
+                    <a href="csPeng.php" class="btn btn-danger">Batal</a>
                  </div>
         </form>
     </div>
@@ -210,47 +322,58 @@ include '../link.php';
 
 if(isset($_POST['simpan'])){
     $sinta_id_ketua=$_SESSION['sinta_id_login'];
-    $nama_ketua=$_SESSION['nama_login'];
-    $nidn_ketua=$_SESSION['nidn_login'];
+     $nama_ketua=$_SESSION['nama_login'];
+     $nidn_ketua=$_SESSION['nidn_login'];
 
-    $judul=$_POST['judul'];
-    $tahun_pertama_usulan=$_POST['tahun_pertama_usulan'];
-    $tahun_usulan_kegiatan=$_POST['tahun_usulan_kegiatan'];
-    $thn_pelaksanaan_kegiatan=$_POST['thn_pelaksanaan_kegiatan'];
-    $lama_kegiatan=$_POST['lama_kegiatan'];
-    $dana_disetujui=$_POST['dana_disetujui'];
+     $judul=$_POST['judul'];
+     $tahun_pertama_usulan=$_POST['tahun_pertama_usulan'];
+     $tahun_usulan_kegiatan=$_POST['tahun_usulan_kegiatan'];
+     $thn_pelaksanaan_kegiatan=$_POST['thn_pelaksanaan_kegiatan'];
+     $lama_kegiatan=$_POST['lama_kegiatan'];
+     $bidang_fokus = $_POST['bidang_fokus'];
+     $nama_skema = $_POST['nama_skema'];
+     $sub_skema= $_POST['sub_skema'];
 
-    $nama_member1=$_POST['nama_member1'];
-    $nidn_member1=$_POST['nidn_member1'];
-    $sinta_id_member1=$_POST['sinta_id_member1'];
+     $dana_usulan=$_POST['dana_usulan'];
+     $target_tkt=$_POST['target_tkt'];
+     $kategori_sumber_dana=$_POST['kategori_sumber_dana'];
 
-    $nama_member2=$_POST['nama_member2'];
-    $nidn_member2=$_POST['nidn_member2'];
-    $sinta_id_member2=$_POST['sinta_id_member2'];
+     $nama_member1=$_POST['nama_member1'];
+     $nidn_member1=$_POST['nidn_member1'];
+     $sinta_id_member1=$_POST['sinta_id_member1'];
 
-    $nama_member3=$_POST['nama_member3'];
-    $nidn_member3=$_POST['nidn_member3'];
-    $sinta_id_member3=$_POST['sinta_id_member3'];
+     $nama_member2=$_POST['nama_member2'];
+     $nidn_member2=$_POST['nidn_member2'];
+     $sinta_id_member2=$_POST['sinta_id_member2'];
 
-    $nama_member4=$_POST['nama_member4'];
-    $nidn_member4=$_POST['nidn_member4'];
-    $sinta_id_member4=$_POST['sinta_id_member4'];
+     $nama_member3=$_POST['nama_member3'];
+     $nidn_member3=$_POST['nidn_member3'];
+     $sinta_id_member3=$_POST['sinta_id_member3'];
 
-    $nama_member5=$_POST['nama_member5'];
-    $nidn_member5=$_POST['nidn_member5'];
-    $sinta_id_member5=$_POST['sinta_id_member5'];
+     $nama_member4=$_POST['nama_member4'];
+     $nidn_member4=$_POST['nidn_member4'];
+     $sinta_id_member4=$_POST['sinta_id_member4'];
 
-     
+     $nama_member5=$_POST['nama_member5'];
+     $nidn_member5=$_POST['nidn_member5'];
+     $sinta_id_member5=$_POST['sinta_id_member5'];
+
+     $nama_mhs1=$_POST['nama_mhs1'];
+     $nim_mhs1=$_POST['nim_mhs1'];
+     $nama_mhs2=$_POST['nama_mhs2'];
+     $nim_mhs2=$_POST['nim_mhs2'];
+     $nama_mhs3=$_POST['nama_mhs3'];
+     $nim_mhs3=$_POST['nim_mhs3'];
+
     $filepengabdian=$_FILES['filepengabdian']['name'];
     $tmp=$_FILES['filepengabdian']['tmp_name'];
     $unik=$_SESSION['nidn_login'];
     $filepengabdian_name = $unik.$filepengabdian ;
     $path='files/pengabdian/'.$filepengabdian_name;
-
  
     if(move_uploaded_file($tmp, $path))
     {
-        $query = "INSERT INTO services(sinta_id_ketua, nama_ketua, nidn_ketua,judul,thn_pertama_usulan, thn_usulan_kegiatan, thn_pelaksanaan_kegiatan, lama_kegiatan,dana_disetujui,sinta_id_member1, nidn_member1, nama_member1, sinta_id_member2, nidn_member2, nama_member2, sinta_id_member3, nidn_member3, nama_member3, sinta_id_member4, nidn_member4, nama_member4, sinta_id_member5, nidn_member5, nama_member5, file_pengabdian) VALUES ('$sinta_id_ketua','$nama_ketua',' $nidn_ketua','$judul','$tahun_pertama_usulan','$tahun_usulan_kegiatan','$thn_pelaksanaan_kegiatan','$lama_kegiatan','$dana_disetujui','$nama_member1','$nidn_member1','$sinta_id_member1','$nama_member2','$nidn_member2','$sinta_id_member2','$nama_member3','$nidn_member3','$sinta_id_member3','$nama_member4','$nidn_member4','$sinta_id_member4','$nama_member5','$nidn_member5','$sinta_id_member5','$filepengabdian_name')";
+        $query = "INSERT INTO services (sinta_id_ketua, nama_ketua, nidn_ketua, afiliasi_ketua, kd_pt_ketua, judul, thn_pertama_usulan, thn_usulan_kegiatan, thn_pelaksanaan_kegiatan, lama_kegiatan, bidang_fokus, nama_skema, dana_usulan, status_usulan, dana_disetujui, afiliasi_sinta_id, nama_institusi_penerima_dana, target_tkt, nama_sub_skema, kategori_sumber_dana, negara_sumber_dana, sinta_id_member1, nidn_member1, nama_member1, sinta_id_member2, nidn_member2, nama_member2, sinta_id_member3, nidn_member3, nama_member3, sinta_id_member4, nidn_member4, nama_member4, sinta_id_member5, nidn_member5, nama_member5, mhs_1, nim_mhs_1, mhs_2, nim_mhs_2, mhs_3, nim_mhs_3, file_pengabdian) VALUES ('$sinta_id_ketua', '$nama_ketua', '$nidn_ketua', 'UNIVERSITAS PATTIMURA', '001021', '$judul', '$tahun_pertama_usulan', '$tahun_usulan_kegiatan', '$thn_pelaksanaan_kegiatan', '$lama_kegiatan', '$bidang_fokus', '$nama_skema', '$dana_usulan', 'Didanai', '0', '492', 'UNIVERSITAS PATTIMURA', '$target_tkt', '$sub_skema', '$kategori_sumber_dana', 'ID', '$sinta_id_member1','$nidn_member1','$nama_member1','$sinta_id_member2','$nidn_member2','$nama_member2','$sinta_id_member3','$nidn_member3','$nama_member3','$sinta_id_member4','$nidn_member4','$nama_member4','$sinta_id_member5','$nidn_member5','$nama_member5','$nama_mhs1','$nim_mhs1','$nama_mhs2','$nim_mhs2','$nama_mhs3','$nim_mhs3','$filepengabdian_name')";
       
         $sql=mysqli_query($conn,$query);
 

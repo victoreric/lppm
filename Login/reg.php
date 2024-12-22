@@ -77,10 +77,40 @@
                         </div>
 
                         <div class="form-group">
+                            <label for='golongan'>Pangkat/ Golongan</label>
+                                <select name="golongan" id='golongan' class="form-control" required >
+                                <option value=''>-- Pilih Pangkat / Golongan --</option>
+                                <option> Penata Muda TK.I / III.b </option>
+                                <option> Penata/ III.c </option>
+                                <option> Penata TK.I / III.d </option>
+                                <option> Pembina/ IV.a </option>
+                                <option> Pembina TK.I/ IV.b </option>
+                                <option> Pembina Utama Muda/ IV.c </option>
+                                <option> Pembina Utama Madya/ IV.d </option>
+                                </select>
+                        </div>
+                        <div class="form-group">
+                            <label for='jafung'>Jabatan Fungsional</label>
+                                <select name="jafung" id='jafung' class="form-control" required >
+                                <option value=''>-- Pilih Jabatan Fungsional --</option>
+                                <option> Tenaga Pengajar </option>
+                                <option> Asisten Ahli</option>
+                                <option> Lektor </option>
+                                <option> Lektor Kepala</option>
+                                <option> Guru Besar</option>
+                                </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="sinta_id">Sinta_ID :</label>
                             <input type="number" min="1" class="form-control" id='sinta_id' name='sinta_id' placeholder="" required>
                         </div>
-                    
+
+                        <div class="form-group">
+                            <label for="hindex">Overall Score Sinta dan H-index Scopus :</label>
+                            <input type="number" min="1" class="form-control" id='hindex' name='hindex' placeholder="" required>
+                        </div>
+
                         <div class="form-group">
                             <label for='jk' >Jenis Kelamin</label>
                                 <select name="jk" id='jk' class="form-control" required >
@@ -98,7 +128,6 @@
                             <input type="date" class="form-control " name="tglahir" id='tglahir' placeholder="" required>
                         </div>
                      
-
                         <div class="form-group">
                             <label for="hp">Nomor Handphone</label>
                             <input type="number" class="form-control " name="hp" id='hp' placeholder="" required>
@@ -124,7 +153,6 @@
         <div class="col-sm-4"></div>
     </div>
 
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -148,25 +176,26 @@ if (isset($_POST['simpan'])) {
     $nip=$_POST['nip'];
     $fakultas=$_POST['fakultas'];
     $prodi=$_POST['prodi'];
+    $golongan=$_POST['golongan'];
+    $jafung=$_POST['jafung'];
     $sinta_id=$_POST['sinta_id'];
+    $hindex=$_POST['hindex'];
     $jk=$_POST['jk'];
     $tmplahir=$_POST['tmplahir'];
     $tglahir=$_POST['tglahir'];
     $hp=$_POST['hp'];
     $email=$_POST['email'];
 
-    $queryReg="INSERT INTO reg (nidn, pass, nama, nip, fakultas, prodi, sinta_id, jk, tmplahir, tglahir, hp, email, level, active) VALUES ('$nidn','$pass','$nama','$nip','$fakultas','$prodi','$sinta_id','$jk','$tmplahir','$tglahir','$hp','$email','101','N')";
+    $queryReg="INSERT INTO reg (nidn, pass, nama, nip, fakultas, prodi, golongan,jafung, sinta_id,hindex, jk, tmplahir, tglahir, hp, email, level, active) VALUES ('$nidn','$pass','$nama','$nip','$fakultas','$prodi','$golongan','$jafung','$sinta_id','$hindex','$jk','$tmplahir','$tglahir','$hp','$email','101','N')";
 
     $sql=mysqli_query($conn,$queryReg);
 
 
     if($sql){
-        echo "<script> alert ('Berhasil menambahkan akun baru!'); window.location='index.php'; </script>" ;
+        echo "<script> alert ('Berhasil menambahkan akun baru! Namun, akun anda belum diaktifkan. Silahkan menunggu verifikasi dari Admin LPPM Unpatti. '); 
+        window.location='index.php'; </script>" ;
     }else {
         echo "terjadi kesalahan selama penyimpanan";
     }
 }
-
-
-
 ?>

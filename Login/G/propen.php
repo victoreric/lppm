@@ -1,5 +1,4 @@
 <?php
-// surat akti kuliah
     include 'menu.php';
     include '../link.php';
 ?>
@@ -15,7 +14,7 @@
 
 <div class="container">
 <div class="card">
-  <div class="card-header text-center">Proposal Penelitian</div>
+  <div class="card-header font-weight-bold text-center text-primary">Proposal Penelitian</div>
   <div class="card-body">
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="panel-body">
@@ -165,12 +164,12 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="nama_member1" class="form-control-label">Nama Anggota Ke-1</label>
-                                <input type="text" class="form-control" id="nama_member1" placeholder="" name="nama_member1">
+                                <input type="text" class="form-control" id="nama_member1" placeholder="" name="nama_member1" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="nidn_member1" class="form-control-label">NIDN Anggota Ke-1</label>
-                                <input type="text" class="form-control" id="nidn_member1" placeholder="" name="nidn_member1">
+                                <input type="text" class="form-control" id="nidn_member1" placeholder="" name="nidn_member1" required>
                             </div>
 
                             <div class="form-group">
@@ -250,9 +249,10 @@
                     <div id="collapseTwo" class="collapse" data-parent="#accordion">
                         <div class="card-body">
                              <label for="nama_mhs1" class="form-control-label">Nama Mahasiswa Ke-1</label>
-                             <input type="text" class="form-control" id="nama_mhs1" placeholder="" name="nama_mhs1">
+                             <input type="text" class="form-control" id="nama_mhs1" placeholder="" name="nama_mhs1" required>
+
                              <label for="nim_mhs1" class="form-control-label">NIM Mahasiswa Ke-1</label>
-                                <input type="text" class="form-control" id="nim_mhs1" placeholder="" name="nim_mhs1">
+                                <input type="text" class="form-control" id="nim_mhs1" placeholder="" name="nim_mhs1" required>
 
                             <label for="nama_mhs2" class="form-control-label">Nama Mahasiswa Ke-2</label>
                              <input type="text" class="form-control" id="nama_mhs2" placeholder="" name="nama_mhs2">
@@ -277,6 +277,7 @@
                     <div class="card-header bg-warning p-2"><h6>Upload Proposal Penelitian</h6>
                         Petunjuk upload file:
                         <ul>
+                            <li>File berisi proposal penelitian, dilengkapi halaman pengesahan oleh Dekan dan Ketua LPPM Unpatti</li>
                             <li>hanya menerima type file pdf</li>
                             <li>besar file pdf <= 3 MB</li>
                             <li>nama file tidak lebih dari 30 karakter</li>
@@ -301,7 +302,7 @@
             <hr>  
                 <div class="panel-footer mt-5 text-center">
                     <button type="submit" name='simpan' class="btn btn-success  mr-5">Simpan</button>
-                    <a href="cs.php" class="btn btn-danger">Batal</a>
+                    <a href="csPen.php" class="btn btn-danger">Batal</a>
                  </div>
         </form>
     </div>
@@ -372,12 +373,12 @@ if(isset($_POST['simpan'])){
     $filepenelitian=$_FILES['filepenelitian']['name'];
     $tmp=$_FILES['filepenelitian']['tmp_name'];
     $unik=$_SESSION['nidn_login'];
-      $filepenelitian_name = $unik.$filepenelitian ;
+    $filepenelitian_name = $unik.$filepenelitian ;
     $path='files/penelitian/'.$filepenelitian_name;
  
     if(move_uploaded_file($tmp, $path))
     {
-        $query = "INSERT INTO research (sinta_id_ketua, nama_ketua, nidn_ketua, afiliasi_ketua, kd_pt_ketua, judul, thn_pertama_usulan, thn_usulan_kegiatan, thn_pelaksanaan_kegiatan, lama_kegiatan, bidang_fokus, nama_skema, dana_usulan, status_usulan, dana_disetujui, afiliasi_sinta_id, nama_institusi_penerima_dana, target_tkt, nama_sub_skema, kategori_sumber_dana, negara_sumber_dana, sinta_id_member1, nidn_member1, nama_member1, sinta_id_member2, nidn_member2, nama_member2, sinta_id_member3, nidn_member3, nama_member3, sinta_id_member4, nidn_member4, nama_member4, sinta_id_member5, nidn_member5, nama_member5, mhs_1, nim_mhs_1, mhs_2, nim_mhs_2, mhs_3, nim_mhs_3, file_penelitian) VALUES ('$sinta_id_ketua', '$nama_ketua', '$nidn_ketua', 'UNIVERSITAS PATTIMURA', '001021', '$judul', '$tahun_pertama_usulan', '$tahun_usulan_kegiatan', '$thn_pelaksanaan_kegiatan', '$lama_kegiatan', '$bidang_fokus', '$nama_skema', '$dana_usulan', 'Didanai', '0', '492', 'UNIVERSITAS PATTIMURA', '$target_tkt', '$sub_skema', '$kategori_sumber_dana', 'ID', '$sinta_id_member1','$nidn_member1','$nama_member1','$sinta_id_member2','$nidn_member2','$nama_member2','$sinta_id_member3','$nidn_member3','$nama_member3','$sinta_id_member4','$nidn_member4','$nama_member4','$sinta_id_member5','$nidn_member5','$nama_member5','$nama_mhs1','$nim_mhs1','$nama_mhs2','$nim_mhs2','$nama_mhs3','$nim_mhs3','$filepenelitian_name')";
+        $query = "INSERT INTO research (sinta_id_ketua, nama_ketua, nidn_ketua, afiliasi_ketua, kd_pt_ketua, judul, thn_pertama_usulan, thn_usulan_kegiatan, thn_pelaksanaan_kegiatan, lama_kegiatan, bidang_fokus, nama_skema, dana_usulan, status_usulan, dana_disetujui, afiliasi_sinta_id, nama_institusi_penerima_dana, target_tkt, nama_sub_skema, kategori_sumber_dana, negara_sumber_dana, sinta_id_member1, nidn_member1, nama_member1, sinta_id_member2, nidn_member2, nama_member2, sinta_id_member3, nidn_member3, nama_member3, sinta_id_member4, nidn_member4, nama_member4, sinta_id_member5, nidn_member5, nama_member5, mhs_1, nim_mhs_1, mhs_2, nim_mhs_2, mhs_3, nim_mhs_3, file_penelitian, file_lap_maju, file_lap_akhir, file_keuangan, status) VALUES ('$sinta_id_ketua', '$nama_ketua', '$nidn_ketua', 'UNIVERSITAS PATTIMURA', '001021', '$judul', '$tahun_pertama_usulan', '$tahun_usulan_kegiatan', '$thn_pelaksanaan_kegiatan', '$lama_kegiatan', '$bidang_fokus', '$nama_skema', '$dana_usulan', 'Didanai', '0', '492', 'UNIVERSITAS PATTIMURA', '$target_tkt', '$sub_skema', '$kategori_sumber_dana', 'ID', '$sinta_id_member1','$nidn_member1','$nama_member1','$sinta_id_member2','$nidn_member2','$nama_member2','$sinta_id_member3','$nidn_member3','$nama_member3','$sinta_id_member4','$nidn_member4','$nama_member4','$sinta_id_member5','$nidn_member5','$nama_member5','$nama_mhs1','$nim_mhs1','$nama_mhs2','$nim_mhs2','$nama_mhs3','$nim_mhs3','$filepenelitian_name','','','','1')";
       
         $sql=mysqli_query($conn,$query);
 

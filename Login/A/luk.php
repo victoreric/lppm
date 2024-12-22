@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION['username_admin'])){
-   echo "<script> alert('Anda Belum Login'); window.location='../index'; </script>";
+if(!isset($_SESSION['nama_admin'])){
+   echo "<script> alert('Anda Belum Login'); window.location='../index.php'; </script>";
 } 
 ?>
  <!DOCTYPE html>
@@ -10,7 +10,7 @@ if(!isset($_SESSION['username_admin'])){
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Student Affairs">
+        <meta name="description" content="Sistem Informasi LPPM">
         <meta name="author" content="Victor Pattiradjawane">
         <title>Suket v.2</title>
         <link href="../vendor/css/sb-admin-2.min.css" rel="stylesheet">
@@ -26,7 +26,7 @@ $file=$_GET['f'];
     <!-- <div class="embed-responsive embed-responsive-21by9">
   <iframe class="embed-responsive-item" src="..."></iframe>
 </div> -->
-        <iframe class="embed-responsive-item" src="../files/berkas_ak/<?php echo $file;?>" alt=""></iframe>
+        <iframe class="embed-responsive-item" src="../G/files/penelitian/<?php echo $file;?>" alt=""></iframe>
     </div>  
 </div>
 </body>

@@ -22,10 +22,20 @@
     session_start();
     if(isset($_SESSION['nama_admin'])){
     if($_SESSION['level_admin']=='100' && $_SESSION['active_admin']=='Y'){
-        header('location:A');
+        header('location:../A');
+    }
+    elseif($_SESSION['level_admin']=='102' && $_SESSION['active_admin']=='Y'){
+        header('location:../dekan');
+    }
+    elseif($_SESSION['level_admin']=='103' && $_SESSION['active_admin']=='Y'){
+        header('location:../reviewer');
+    }
+    elseif($_SESSION['level_admin']=='104' && $_SESSION['active_admin']=='Y'){
+        header('location:../adminlppm');
     }
     else {
         echo "<script> alert ('User dan Pasword belum diaktifkan. Hubungi administrator'); window.location='index.php'; </script>" ;
+        session_destroy();
         }
     }
     include "../link.php"; 
@@ -48,8 +58,8 @@
         <div class="p-2">
             <div class="text-center">
                 <img src="../assets/img/unpattilogo.png" width="250" height="250" alt="logo" class="logo">
-                 <h1 class="h4 text-gray-900 mb-4">Administrator LPPM</h1>
-                 <h5 class="h4 text-gray-900 mb-2">Information system</h5>
+                 <h1 class="h4 text-gray-900 mb-4">Administrator & Reviewer</h1>
+                 <h5 class="h4 text-gray-900 mb-2">LPPM Information system</h5>
             </div>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <div class="form-group">
@@ -66,8 +76,6 @@
                 </div>                 
                     <input class='btn btn-primary btn-user btn-block' type="submit" name="login" id="login" value='Login'>
             </form>
-
-
             <hr>
             <div class="text-center">
                 <a class="small" data-toggle='modal' data-target='#myModal' href=''>Lupa Password?</a>
@@ -121,14 +129,25 @@
 
 	if ($cek==1 ) {
 		$hasil=mysqli_fetch_array($sql);
+        $_SESSION['id_login']=$hasil['id_login'];
 		$_SESSION['nama_admin']=$hasil['nama'];
 		$_SESSION['username_admin']=$hasil['username'];
+        $_SESSION['fakultas']=$hasil['fakultas'];
 		$_SESSION['level_admin']=$hasil['level'];
         $_SESSION['active_admin']=$hasil['active'];
 
-		if($_SESSION['level_admin']=='101' && $_SESSION['active_admin']=='Y'){
+		if($_SESSION['level_admin']=='100' && $_SESSION['active_admin']=='Y'){
             header('location:../A/index.php');
 		}
+        elseif($_SESSION['level_admin']=='102' && $_SESSION['active_admin']=='Y'){
+            header('location:../dekan/index.php');
+        }
+        elseif($_SESSION['level_admin']=='103' && $_SESSION['active_admin']=='Y'){
+            header('location:../reviewer');
+        }
+        elseif($_SESSION['level_admin']=='104' && $_SESSION['active_admin']=='Y'){
+            header('location:../adminlppm/index.php');
+        }
 		else {
 			session_destroy();
 			echo "<script> alert ('User dan Pasword belum diaktifkan..! Hubungi Admin LPPM'); window.location='index.php'; </script>" ;

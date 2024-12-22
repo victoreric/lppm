@@ -20,14 +20,11 @@ else {
     <body>
 <?php
 $file=$_GET['f'];
+// echo $file;
 ?>
 
 <div class="container-fluid">   
     <div class="embed-responsive embed-responsive-1by1">
-
-    <!-- <div class="embed-responsive embed-responsive-21by9">
-  <iframe class="embed-responsive-item" src="..."></iframe>
-</div> -->
         <iframe class="embed-responsive-item" src="files/penelitian/<?php echo $file;?>" alt=""></iframe>
     </div>  
 </div>

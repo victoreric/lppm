@@ -22,6 +22,8 @@ if($level=='101'){
         <meta name="author" content="Victor Pattiradjawane">
         <title>LPPM Unpatti</title>
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <!-- Custom fonts for this template-->
         <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link
@@ -93,55 +95,119 @@ if($level=='101'){
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Pengajuan Proposal
+                 <!-- Heading Penelitian-->
+                 <div class="sidebar-heading">
+                    Penelitian
                 </div>
 
                 <!-- Nav Item - statistik Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                        aria-expanded="true" aria-controls="collapseTwo">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsepenelitianproposal"
+                        aria-expanded="true" aria-controls="collapseSatu">
                         <i class="fas fa-edit fa-chart-area"></i>
-                        <span>Buat baru</span>
+                        <span>Proposal Penelitian</span>
                     </a>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapsepenelitianproposal" class="collapse" aria-labelledby="headingSatu" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Proposal:</h6>
-                            <a class="collapse-item" href="propen.php"> Penelitian</a>
-                            <a class="collapse-item" href="propeng.php">Pengabdian</a>
+                            <a class="collapse-item" href="propen.php"> Pengajuan Baru</a>
+                            <a class="collapse-item" href="progress_rep.php">Laporan Kemajuan</a>
+                            <a class="collapse-item" href="">Laporan Akhir</a> 
+                            <a class="collapse-item" href="">Laporan Keuangan</a>
                             <!-- <a class="collapse-item" href="#">Lainnya</a> -->
                         </div>
                     </div>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="csPen.php">
+                        <!-- <i class="fas fa-fw fa-book"></i> -->
+                        <i class="fas fa-fw fa-check"></i>
+                        <span>Status Proposal Penelitian</span></a>
                 </li>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
-                <!-- Heading -->
-                <div class="sidebar-heading">
-                    Status Pengajuan Proposal
+                 <!-- Heading Pengabdian-->
+                 <div class="sidebar-heading">
+                    Pengabdian kepada Masyarakat
                 </div>
 
-                 <!-- Nav Item - statistik Collapse Menu -->
-                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCek"
-                        aria-expanded="true" aria-controls="collapseCek">
+                <!-- Nav Item - statistik Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsepengabdianproposal"
+                        aria-expanded="true" aria-controls="collapseDua">
                         <i class="fas fa-edit fa-chart-area"></i>
-                        <span>Cek Status</span>
+                        <span>Proposal Pengabdian</span>
                     </a>
-                    <div id="collapseCek" class="collapse" aria-labelledby="headingCek" data-parent="#accordionSidebar">
+                    <div id="collapsepengabdianproposal" class="collapse" aria-labelledby="headingDua" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Proposal:</h6>
-                            <a class="collapse-item" href="csPen.php"> Penelitian</a>
-                            <a class="collapse-item" href="csPeng.php">Pengabdian</a>
+                            <a class="collapse-item" href="propeng.php"> Pengajuan Baru</a>
+                            <a class="collapse-item" href="">Laporan Kemajuan</a>
+                            <a class="collapse-item" href="">Laporan Akhir</a> 
+                            <a class="collapse-item" href="">Laporan Keuangan</a>
                             <!-- <a class="collapse-item" href="#">Lainnya</a> -->
                         </div>
                     </div>
                 </li>
 
+                <li class="nav-item ">
+                    <a class="nav-link" href="csPeng.php">
+                        <!-- <i class="fas fa-fw fa-book"></i> -->
+                        <i class="fas fa-fw fa-check"></i>
+                        <span>Status Proposal Pengabdian</span></a>
+                </li>
+
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
+
+                    <!-- Heading Kerjasama-->
+                 <div class="sidebar-heading">
+                    Kerjasama
+                </div>
+
+                <!-- Nav Item - statistik Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekerjasamaproposal"
+                        aria-expanded="true" aria-controls="collapseTiga">
+                        <i class="fa fa-area-chart"></i>
+                        <span>Proposal Kerjasama</span>
+                    </a>
+                    <div id="collapsekerjasamaproposal" class="collapse" aria-labelledby="headingTiga" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Proposal:</h6>
+                            <a class="collapse-item" href=""> Pengajuan Baru</a>
+                            <a class="collapse-item" href="">Pencairan Dana</a>
+                            <a class="collapse-item" href="">Pengajuan Perpanjangan</a> 
+                            <a class="collapse-item" href="">Download</a>
+                            <!-- <a class="collapse-item" href="#">Lainnya</a> -->
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="">
+                        <!-- <i class="fas fa-fw fa-book"></i> -->
+                        <i class="fas fa-fw fa-check"></i>
+                        <span>Status Proposal Kerjasama</span></a>
+                </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="download.php">
+                        <!-- <i class="fas fa-fw fa-book"></i> -->
+                        <i class="fas fa-fw fa-download"></i>
+                        <span>Download</span></a>
+                </li>
+
+                 <!-- Divider -->
+                 <hr class="sidebar-divider d-none d-md-block">
+
 
                 <li class="nav-item">
                     <span class="nav-link collapsed" aria-expanded="true" aria-controls="collapseThree">
