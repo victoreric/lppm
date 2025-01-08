@@ -88,15 +88,46 @@ include '../link.php';
                 <td><?php echo $hasil['jafung']; ?></td>
             </tr>
 
+            <?php
+            // untuk mengetahui jumlah dosen yang terlibat
+        $query_jd= "SELECT id_research,
+        COUNT(id_research) as idPenelitian,
+        COUNT(IF(nidn_member1!='', nidn_member1, NULL)) as dosen1,
+                COUNT(IF(nidn_member2!='', nidn_member2, NULL)) as dosen2,
+                COUNT(IF(nidn_member3!='', nidn_member3, NULL)) as dosen3,
+                COUNT(IF(nidn_member4!='', nidn_member4, NULL)) as dosen4,
+                COUNT(IF(nidn_member5!='', nidn_member5, NULL)) as dosen5
+        FROM research
+        Where id_research=$id_cari"; 
+
+        $sql_jd=mysqli_query($conn,$query_jd);
+        $hasil_jd=mysqli_fetch_assoc($sql_jd);
+        $totaldosen=$hasil_jd['dosen1']+$hasil_jd['dosen2']+$hasil_jd['dosen3']+$hasil_jd['dosen4']+$hasil_jd['dosen5'];
+    
+        ?>
             <tr>
                 <td class="font-weight-bold">Anggota Peneliti</td>
                 <td>:</td>
-                <td>Dosen ...... orang </td>
+                <td>Dosen  <?php echo $totaldosen   ?> orang </td>
             </tr>
+            <?php 
+            // untuk mengetahui jumlah mahasiswa yang terlibat
+                $query_jm= "SELECT id_research,
+                COUNT(id_research) as idPenelitian,
+                COUNT(IF(nim_mhs_1!='', nim_mhs_1, NULL)) as mhs1,
+                COUNT(IF(nim_mhs_2!='', nim_mhs_2, NULL)) as mhs2,
+                COUNT(IF(nim_mhs_3!='', nim_mhs_3, NULL)) as mhs3
+                FROM research
+                Where id_research=$id_cari"; 
+
+                $sql_jm=mysqli_query($conn,$query_jm);
+                $hasil_jm=mysqli_fetch_assoc($sql_jm);
+                $totalmhs=$hasil_jm['mhs1']+$hasil_jm['mhs2']+$hasil_jm['mhs3'];
+            ?>
             <tr>
                 <td></td>
                 <td></td>
-                <td>Mahasiswa ...... orang </td>
+                <td>Mahasiswa <?php echo $totalmhs;   ?> orang </td>
             </tr>
         <tr>
             <td>Tahun Pelaksanaan</td>

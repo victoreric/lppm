@@ -16,6 +16,9 @@ if (isset($_GET['aksi'])){
         case "delete":
             delete($conn);
             break;
+        case "lihat":
+            lihat($conn);
+            break;
         default:
             view($conn);
         }
@@ -36,8 +39,6 @@ function view($conn){
   </ul>
 </div>
 
-
-
 <div class="container table-responsive">
   <h4 class='text-center'>Daftar Pengajuan Proposal Pengabdian</h4>           
   <table class="table table-bordered table-hover">
@@ -51,7 +52,6 @@ function view($conn){
       <th>Dana Diusulkan</th>
       <th>File Proposal</th>
       <th>Aksi</th>
-      <th>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -60,8 +60,6 @@ function view($conn){
       $query="SELECT * FROM services
        WHERE nidn_ketua=$nidn
        ORDER BY id_services DESC";
-
-      
 
       $sql=mysqli_query($conn,$query);
       $cek=mysqli_num_rows($sql);
@@ -80,41 +78,10 @@ function view($conn){
         <td><?php echo $hasil['judul']; ?></td>
         <td><?php echo $hasil['dana_usulan']; ?></td>
         <td> <a href="luk_peng.php?f=<?php echo $hasil['file_pengabdian']; ?>" target='blank'><?php echo $hasil['file_pengabdian']?>  </td>
-        <td>delete | 
-        <a href='csPeng.php?aksi=update&id=<?php echo $id_services; ?>' >edit </a> 
-      </td>
+        <td>
+          <a href='csPeng.php?aksi=lihat&id=<?php echo $id_services; ?>' >Lihat </a> 
+         </td>
 
-
-           <?php 
-            // $ttd=$hasil['ttd'];
-            // if($ttd!='ttd.png'){ 
-            ?>
-              <td class='bg-danger'>
-                Sedang diproses
-              </td>
-            <?php  
-            // } 
-            //   else { 
-            ?>
-            <!-- <td class='bg-success'> -->
-              <?php 
-              // $id=$hasil['id_surat'];
-              // if($hasil['id_jenis']=='1'){ 
-              //           echo "<a href='../A/c.php?id=$id' class='btn btn-success' name='' target='blank'>Cetak Surat</a> ";
-              //       }  
-              //       elseif($hasil['id_jenis']=='2'){
-              //           echo "<a href='../A/c2.php?id=$id' class='btn btn-success' name='' target='blank'>Cetak Surat</a> ";
-              //       }
-              //       else{
-              //           echo "<a href='../A/c3.php?id=$id' class='btn btn-success mr-5' name='' target='blank'>Cetak Surat</a> ";
-              //       }
-                ?>
-              <!-- <a href="../A/c.php?id=<?php echo $hasil['id_surat'];?>" target="blank">Cetak Surat </a> -->
-            </td>
-            <?php 
-            // }
-            ?>
-        
       </tr>
       <?php }?>
     </tbody>
@@ -125,6 +92,31 @@ function view($conn){
 } 
 ?>
 <!-- End Function View -->
+
+
+<!-- Function Lihat -->
+<?php
+function lihat($conn){
+//   $nidn=$_SESSION['nidn_login'];
+$id_research=$_GET['id'];
+echo $id_research;
+?>
+<div>
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="csPeng.php">Status Pengajuan</a></li>
+    <li class="breadcrumb-item"><a href="#">Lihat Proposal Pengabdian</a></li>
+  </ul>
+</div>
+
+
+
+
+
+<?php } ?>
+<!-- End Function Lihat -->
+
+
 
 
 <?php
@@ -518,7 +510,7 @@ if(isset($_POST['ubah'])){
                     echo "<br><a href='csPeng.php'>Kembali Ke Form</a>";
                 }
         }
-    // jika user mau ubah file proposal, mencentang checkbox yagn adai form ubah, lakukan
+    // jika user mau ubah file proposal, mencentang checkbox yang adai form ubah, lakukan
     else {
             $file_pengabdian=$_FILES['file_pengabdian']['name'];
             $tempfile=$_FILES['file_pengabdian']['tmp_name'];

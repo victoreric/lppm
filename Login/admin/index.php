@@ -132,6 +132,7 @@
         $_SESSION['id_login']=$hasil['id_login'];
 		$_SESSION['nama_admin']=$hasil['nama'];
 		$_SESSION['username_admin']=$hasil['username'];
+        $_SESSION['nip']=$hasil['nip'];
         $_SESSION['fakultas']=$hasil['fakultas'];
 		$_SESSION['level_admin']=$hasil['level'];
         $_SESSION['active_admin']=$hasil['active'];

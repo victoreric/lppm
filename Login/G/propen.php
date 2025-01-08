@@ -7,14 +7,14 @@
 <div>
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
-    <li class="breadcrumb-item"><a href="#">Pengajuan Proposal</a></li>
+    <li class="breadcrumb-item"><a href="#">Pengajuan Proposal Baru</a></li>
     <li class="breadcrumb-item"><a href="propen.php">Penelitian</a></li>
   </ul>
 </div>
 
 <div class="container">
 <div class="card">
-  <div class="card-header font-weight-bold text-center text-primary">Proposal Penelitian</div>
+  <div class="card-header font-weight-bold text-center text-primary">Pengajuan Proposal Penelitian</div>
   <div class="card-body">
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="panel-body">

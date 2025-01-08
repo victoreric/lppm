@@ -101,15 +101,15 @@ if($level=='104'){
                 </div>
                 <!-- Nav Item - statistik Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="research_adm_nilai.php" aria-expanded="true" aria-controls="collapseOne">
+                    <a class="nav-link collapsed" href="pro_pen_nilai.php" aria-expanded="true" aria-controls="collapseOne">
                         <i class="fas fa-edit fa-chart-area"></i>
-                        <span>Penilaian Administrasi</span>
+                        <span>Kelengkapan Proposal</span>
                     </a>
                 </li>
               
                 <!-- Divider -->
                 <hr class="sidebar-divider">
-
+                
                  <!-- Heading -->
                  <div class="sidebar-heading">
                     Penilaian Proposal Pengabdian
@@ -118,12 +118,36 @@ if($level=='104'){
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-edit fa-chart-area"></i>
-                        <span>Penilaian Administrasi</span>
+                        <span>Kelengkapan Proposal</span>
                     </a>
                 </li>
               
                 <!-- Divider -->
                 <hr class="sidebar-divider">
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Master Data
+                </div>
+                <!-- Nav Item - statistik Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                        aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fa fa-th-list fa-chart-area"></i>
+                        <span>Master Data</span>
+                    </a>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <!-- <h6 class="collapse-header">Master data:</h6> -->
+                            <!-- <a class="collapse-item" href="jenis.php">Surat Permohonan</a> -->
+                            <!-- <a class="collapse-item" href="pejabat">Pejabat</a> -->
+                            <a class="collapse-item" href="prodi.php">Program Studi</a>
+                            <a class="collapse-item" href="mu.php">Manajemen User</a>
+                        </div>
+                    </div>
+                </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
 
                 <li class="nav-item">
                     <span class="nav-link collapsed" aria-expanded="true" aria-controls="collapseThree">

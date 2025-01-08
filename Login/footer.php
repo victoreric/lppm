@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white mt-5">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-               <span>Copyright &copy; ВЭП 2024</span>
+               <span>Copyright &copy;ВЭП 2024 - <?php echo date('Y') ?></span>
             </div>
         </div>
     </footer>

@@ -8,7 +8,7 @@ include '../link.php';
 <div>
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
-    <li class="breadcrumb-item"><a href="#">Usulan Proposal Penelitian</a></li>
+    <li class="breadcrumb-item"><a href="#">Penilaian Administrasi & Substansi</a></li>
   </ul>
 </div>
 <div class="container-fluid mb-5">
@@ -44,7 +44,7 @@ include '../link.php';
             INNER JOIN mstr_prodi ON mstr_prodi.id_prodi=reg.prodi
             INNER JOIN mstr_fakultas ON mstr_fakultas.id_fakultas=reg.fakultas
             INNER JOIN status ON status.id_status=research.status
-            WHERE status=2 OR status=3 OR status=4 OR status=5 
+            WHERE status!=1 AND status!=3
             ORDER BY status.id_status ASC ";
             $sql=mysqli_query($conn,$query);
             $cek=mysqli_num_rows($sql);
@@ -74,19 +74,19 @@ include '../link.php';
                 $id_research=$hasil['id_research'];
                 // echo $id_research;
 
-                $queri_aksi="SELECT * FROM substansi WHERE id_research=$id_research";
+                $queri_aksi="SELECT * FROM research_nilai_adm WHERE id_research=$id_research";
                 $sql_aksi=mysqli_query($conn,$queri_aksi);
                 $res_aksi=mysqli_fetch_assoc($sql_aksi);
                 if($res_aksi!=0){ 
                 ?>
                     <td>
-                     <a href='print_nilai_subs.php?id=<?php echo $hasil['id_research']; ?>' class="btn btn-success btn-sm font-weight-bolder" role="button" role="button" target="_blank">Lihat Nilai </a>
+                     <a href='research_adm_subs_print.php?id=<?php echo $hasil['id_research']; ?>' class="btn btn-success btn-sm font-weight-bolder" role="button" role="button" target="_blank">Lihat Nilai </a>
                 </td>
                 <?php
                 } else {
                 ?>
                    <td>  
-                    <a href='penilaian_subs.php?id=<?php echo $hasil['id_research']; ?>' class="btn btn-danger btn-sm font-weight-bolder" role="button" role="button">Beri Penilaian Substansial </a>
+                    <a href='research_adm_subs.php?id=<?php echo $hasil['id_research']; ?>' class="btn btn-danger btn-sm font-weight-bolder" role="button" role="button">Beri Penilaian Adm. & Substansi </a>
                    </td>
                 <?php    
                 }

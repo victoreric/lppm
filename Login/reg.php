@@ -30,7 +30,7 @@
                     <form method="POST" action="" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nidn">NIDN :</label>
-                            <input type="number" min="1" class="form-control" id='nidn' name='nidn' placeholder="" required>
+                            <input type="text" maxlength="10" class="form-control" id='nidn' name='nidn' placeholder="" required>
                         </div>
                         <div class="form-group">
                             <label for="pass">Password untuk login</label>
@@ -43,7 +43,7 @@
 
                         <div class="form-group">
                             <label for="nip">NIP :</label>
-                            <input type="number" min="1" class="form-control" id='nip' name='nip' placeholder="" required>
+                            <input type="text" maxlength = "18"  class="form-control" id='nip' name='nip' placeholder="" required>
                         </div>
 
                         <div class="form-group">
@@ -55,7 +55,7 @@
                                     $sqlFak= mysqli_query($conn,$queryFak);
                                     while ($hasilFak = mysqli_fetch_array($sqlFak))
                                     {
-                                    echo "<option value='".$hasilFak['id_fakultas']."' >" .$hasilFak['fakultas']. "</option>";
+                                    echo "<option value='".$hasilFak['id_fakultas']."' >" .$hasilFak['fakultas_name']. "</option>";
                                     }
                                 ?>
                             </select> 
@@ -103,7 +103,7 @@
 
                         <div class="form-group">
                             <label for="sinta_id">Sinta_ID :</label>
-                            <input type="number" min="1" class="form-control" id='sinta_id' name='sinta_id' placeholder="" required>
+                            <input type="text" maxlength="7" class="form-control" id='sinta_id' name='sinta_id' placeholder="" required>
                         </div>
 
                         <div class="form-group">

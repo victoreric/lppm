@@ -131,7 +131,7 @@
 		$hasil=mysqli_fetch_array($sql);
         $_SESSION['nidn_login']=$hasil['nidn'];
 		$_SESSION['nama_login']=$hasil['nama'];
-        $_SESSION['nip_login']=$hasil['jk'];
+        $_SESSION['nip_login']=$hasil['nip'];
         $_SESSION['jk_login']=$hasil['jk'];
         $_SESSION['tmplahir_login']=$hasil['tmplahir'];
         $_SESSION['tglahir_login']=$hasil['tglahir'];

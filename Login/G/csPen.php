@@ -7,8 +7,8 @@ include '../link.php';
 // Program Utama
 if (isset($_GET['aksi'])){
     switch($_GET['aksi']){
-        case "add":
-            add($conn);
+        case "detail":
+            detail($conn);
             break;
         case "update":
             update($conn);
@@ -22,6 +22,9 @@ if (isset($_GET['aksi'])){
 } else {
     view($conn);
 }
+
+
+
 
 // fungsilihat
 function lihat($conn){ 
@@ -260,7 +263,6 @@ $queri="SELECT research.*, status.id_status, status.status_name
     <div class="form-group">
         <label for="status" class="form-control-label">Status Penerimaan Proposal</label>
         <input type="text" class="form-control" id="status" name="status" value="<?php echo $hasil['status_name']; ?>"readonly>
-
     </div>
   </div>
 </div>
@@ -275,17 +277,97 @@ $queri="SELECT research.*, status.id_status, status.status_name
 ?>
 <!--endFungsiLihat -->
 
+
+<!--FungsiView -->
 <?php
 // function view
 function view($conn){
   $nidn=$_SESSION['nidn_login'];
 ?>
-
 <div>
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
     <li class="breadcrumb-item"><a href="#">Status Pengajuan</a></li>
     <li class="breadcrumb-item"><a href="csPen.php">Proposal Penelitian</a></li>
+  </ul>
+</div>
+
+<!-- <div class="container table-responsive">
+  <h4 class='text-center'>Daftar Pengajuan Proposal Pengabdian</h4>     -->
+<div class="container-fluid"> 
+<div class="card">
+  <div class="card-header text-center">Daftar Pengajuan Proposal Penelitian</div>
+  <div class="card-body table-responsive">       
+  <table id="example1" class="table table-bordered table-hover">
+    <thead class="bg-dark text-white text-center">
+      <tr>
+      <th>No.</th>
+      <th>Tahun Pengusulan</th>
+      <th>NIDN</th>
+      <th>Nama</th>
+      <th>Judul</th>
+      <th>Dana Diusulkan</th>
+      <th>File Proposal</th>
+      <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php                          
+      $no=0;
+      $query="SELECT * FROM research
+       WHERE nidn_ketua=$nidn
+       ORDER BY id_research DESC";
+
+      $sql=mysqli_query($conn,$query);
+      $cek=mysqli_num_rows($sql);
+      if(!$cek){
+        echo "tidak ada data";
+      }
+      while($hasil=mysqli_fetch_array($sql)){
+        $id_research=$hasil['id_research'];
+      $no++;
+    ?>
+      <tr>
+        <td><?php echo $no ?></td>
+        <td><?php echo $hasil['thn_usulan_kegiatan']; ?></td>
+        <td><?php echo $hasil['nidn_ketua']; ?></td>
+        <td><?php echo $hasil['nama_ketua']; ?></td>
+        <td><?php echo $hasil['judul']; ?></td>
+        <td><?php echo $hasil['dana_usulan']; ?></td>
+        <td> 
+            <!-- <a href="luk.php?f=<?php echo $hasil['file_penelitian']; ?>" target='blank'><?php echo $hasil['file_penelitian']?>   -->
+            <a href="luk.php?f=<?php echo $hasil['file_penelitian']; ?>" target='blank'>Lihat file 
+        </td>
+
+        <td>
+          <a href='csPen.php?aksi=detail&id=<?php echo $id_research; ?>' >Detail </a> 
+         </td>
+
+      </tr>
+      <?php }?>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+<?php } ?>
+<!--endFungsiView -->
+
+
+
+<?php
+// function detail
+function detail($conn){
+//   $nidn=$_SESSION['nidn_login'];
+  $id_res=$_GET['id'];
+?>
+
+<div>
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
+    <li class="breadcrumb-item"><a href="csPen.php">Status Pengajuan</a></li>
+    <li class="breadcrumb-item"><a href="#">Proposal Penelitian</a></li>
   </ul>
 </div>
 
@@ -296,7 +378,7 @@ function view($conn){
       $query="SELECT research.*, status.id_status, status.status_name
       FROM research
       INNER JOIN status ON status.id_status=research.status
-       WHERE nidn_ketua=$nidn
+       WHERE id_research=$id_res
        ORDER BY id_research DESC";
 
       $sql=mysqli_query($conn,$query);
@@ -332,6 +414,7 @@ function view($conn){
             <td>:</td>
             <td><?php echo $hasil['dana_usulan']; ?></td>
         </tr>
+        
         <?php
             if($hasil['dana_disetujui']!="0"){
                 ?>
@@ -363,11 +446,22 @@ function view($conn){
       <tr>
         <td>1</td>
         <td>Pengajuan Proposal</td>
-        <td>-</td>
+        <td> 
+            <?php 
+            $id_riset_pro_pen= $hasil['id_research'];
+
+            $query_kom="SELECT komentar FROM proposal_pen WHERE `id_research`=$id_riset_pro_pen";
+            $sql_kom=mysqli_query($conn,$query_kom);
+            $res_kom=mysqli_fetch_assoc($sql_kom);
+
+            echo $res_kom['komentar'];
+            ?> 
+        
+        </td>
         <td> 
              <?php 
             $status=$hasil['status'];
-            if($status=='1'){ 
+            if($status=='1' OR $status=='3' ){ 
             ?>
                 <a href="csPen.php?aksi=update&id=<?php echo $id_research; ?>" class="btn btn-warning btn-sm text-reset" role="button">Ubah</a>
             <?php
@@ -383,7 +477,7 @@ function view($conn){
       
     <tr>
         <td>2</td>
-        <td> Penilaian Administrasi</td>
+        <td> Penilaian Administrasi & Substansi</td>
         <td>
             <?php 
                $query_adm="SELECT * FROM research_nilai_adm WHERE id_research=$id_research";
@@ -398,7 +492,8 @@ function view($conn){
             <?php 
             $cek_adm=mysqli_num_rows($sql_adm);
             if(!$cek_adm){
-            echo "... Menunggu ...";
+            // echo "... Menunggu ...";
+            
             }
             else {
             ?>
@@ -410,14 +505,19 @@ function view($conn){
 
     </tr>
    
-    <tr>
+    <!-- <tr>
         <td>3</td>
         <td>Penilaian Substansi</td>
         <td>
         <?php 
-               echo $hasil['status_name'];
+               $query_subs="SELECT * FROM substansi WHERE id_research=$id_research";
+               $sql_subs=mysqli_query($conn,$query_subs);
+               $hasil_subs=mysqli_fetch_assoc($sql_subs);
+
+               echo $hasil_subs['kom_sesuai'];
             ?>
         </td>
+
         <td>
         <?php 
             $query_sub="SELECT * FROM substansi WHERE id_research=$id_research";
@@ -434,54 +534,54 @@ function view($conn){
             }
             ?> 
         </td>
-    </tr>
+    </tr> -->
    
     <tr>
         <td>4</td>
         <td>Pencairan Dana</td>
-        <td>Komentar</td>
+        <td> - </td>
         <td>
-            ubah | lihat
+           -
         </td>
     </tr>
     <tr>
         <td>5</td>
         <td>Laporan Kemajuan</td>
-        <td>Komentar</td>
+        <td> - </td>
         <td>
-            ubah | lihat
+            -
         </td>
     </tr>
     <tr>
         <td>6</td>
         <td>Monev Laporan Kemajuan </td>
-        <td>Komentar</td>
+        <td> - </td>
         <td>
-            ubah | lihat
+            -
         </td>
     </tr>
     <tr>
         <td>7</td>
         <td>Laporan Akhir</td>
-        <td>Komentar</td>
+        <td> - </td>
         <td>
-            ubah | lihat
+            -
         </td>
     </tr>
     <tr>
         <td>8</td>
         <td>Monev Laporan Akhir</td>
-        <td>Komentar</td>
+        <td> - </td>
         <td>
-            ubah | lihat
+            -
         </td>
     </tr>
     <tr>
         <td>9</td>
         <td>Selesai</td>
-        <td>Komentar</td>
+        <td> - </td>
         <td>
-            ubah | lihat
+            -
         </td>
     </tr>
 
@@ -494,7 +594,7 @@ function view($conn){
       }
 } 
 ?>
-<!-- End Function View -->
+<!-- End Function Detail -->
 
 
 <?php
@@ -681,7 +781,7 @@ $id_research=$_GET['id'];
 
                         <option value= 'Perusahaan/ Organisasi Swasta' <?php if($hasil['kategori_sumber_dana']=='Perusahaan/ Organisasi Swasta') {echo 'selected';}  ?>>Perusahaan/ Organisasi Swasta</option>
 
-                        <option value= 'Institusi Internal ' <?php if($hasil['kategori_sumber_dana']=='Institusi Internal') {echo 'selected';}  ?>>Institusi Internal </option>
+                        <option value= 'Institusi Internal' <?php if($hasil['kategori_sumber_dana']=='Institusi Internal') {echo 'selected';}  ?>>Institusi Internal </option>
 
                         <option value= 'Mandiri' <?php if($hasil['kategori_sumber_dana']=='Mandiri') {echo 'selected';}  ?>>Mandiri</option>
                     </select>

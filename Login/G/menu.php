@@ -178,7 +178,7 @@ if($level=='101'){
                     <div id="collapsekerjasamaproposal" class="collapse" aria-labelledby="headingTiga" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Proposal:</h6>
-                            <a class="collapse-item" href=""> Pengajuan Baru</a>
+                            <a class="collapse-item" href="kerjasama_usul.php"> Pengajuan Baru</a>
                             <a class="collapse-item" href="">Pencairan Dana</a>
                             <a class="collapse-item" href="">Pengajuan Perpanjangan</a> 
                             <a class="collapse-item" href="">Download</a>
@@ -188,7 +188,7 @@ if($level=='101'){
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="kerjasama_status.php">
                         <!-- <i class="fas fa-fw fa-book"></i> -->
                         <i class="fas fa-fw fa-check"></i>
                         <span>Status Proposal Kerjasama</span></a>

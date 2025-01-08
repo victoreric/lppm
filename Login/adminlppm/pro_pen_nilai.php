@@ -3,20 +3,9 @@
 include 'menuALppm.php';
 include '../link.php';
 
-
-
 // Program Utama
 if (isset($_GET['aksi'])){
     switch($_GET['aksi']){
-        case "add":
-            add($conn);
-            break;
-        case "update":
-            update($conn);
-            break;
-        case "delete":
-            delete($conn);
-            break;
         case "penilaian":
           penilaian($conn);
           break;
@@ -35,7 +24,7 @@ function penilaian($conn){
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
     <li class="breadcrumb-item"><a href="#">Proposal Penelitian</a></li>
-    <li class="breadcrumb-item"><a href="#">Penilaian Administrasi</a></li>
+    <li class="breadcrumb-item"><a href="#">Kelengkapan Proposal</a></li>
   </ul>
 </div>
 <!-- Main content starts -->
@@ -43,18 +32,20 @@ function penilaian($conn){
   
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary text-center">Penilaian Administrasi Proposal Penelitian</h6>
+            <h6 class="m-0 font-weight-bold text-primary text-center">Penilaian Kelengkapan Proposal Penelitian</h6>
         </div>
         <div class="card-body" style="color:black">
             <?php 
                 $id_cari=$_GET['id'];
-                $query="SELECT judul, nama_ketua FROM research WHERE id_research=$id_cari";
+                $query="SELECT id_research, judul, nama_ketua FROM research WHERE id_research=$id_cari";
                 $sql=mysqli_query($conn,$query);
                 $res=mysqli_fetch_assoc($sql);
             ?>
             Judul : <?php echo $res['judul'] ; ?>
             <br>
             Ketua : <?php echo $res['nama_ketua'] ; ?>
+            <br>
+            <br>
 
         <form method="POST" class="form-inline" action="" enctype="multipart/form-data">
             <div class="panel-body table-responsive">
@@ -62,98 +53,48 @@ function penilaian($conn){
                 <thead>
                 <tr>
                     <th>ASPEK PENILAIAN </th>
-                    <th>NILAI </th>
-                    
+                    <th>KELENGKAPAN </th>
                 </tr>
                 </thead>
                 <tbody>
+               
                 <tr>
-                    <td>Urgensi Penelitian </td>
+                    <td>Cover Proposal </td>
                     <td>
-                        <select name="urgensi" id='urgensi' class="form-control" required >
+                        <select name="cover" id='cover' class="form-control" required >
                             <option value=''>-- Pilih nilai --</option>
-                            <option> 80 </option>
-                            <option> 60 </option>
-                            <option> 40 </option>
-                            <option> 20 </option>
+                            <option> Lengkap </option>
+                            <option> Belum Lengkap</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>Orisinalitas dan Novelty Penelitian</td>
+                    <td>Lembaran Pengesahan  </td>
                     <td>
-                        <select name="novelty" id='novelty' class="form-control" required >
+                        <select name="pengesahan" id='pengesahan' class="form-control" required >
                             <option value=''>-- Pilih nilai --</option>
-                            <option> 80 </option>
-                            <option> 60 </option>
-                            <option> 40 </option>
-                            <option> 20 </option>
+                            <option> Lengkap </option>
+                            <option> Belum Lengkap</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>Kaitan Penelitian dengan PIP dan RIP Penelitian Unpatti </td>
+                    <td>Penyusunan Proposal sesuai aturan</td>
                     <td>
-                        <select name="kaitan" id='kaitan' class="form-control" required >
+                        <select name="susunan" id='susunan' class="form-control" required >
                             <option value=''>-- Pilih nilai --</option>
-                            <option> 60 </option>
-                            <option> 40 </option>
-                            <option> 20 </option>
-                        </select>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>Peta Jalan Penelitian</td>
-                    <td>
-                        <select name="peta" id='peta' class="form-control" required >
-                            <option value=''>-- Pilih nilai --</option>
-                            <option> 60 </option>
-                            <option> 40 </option>
-                            <option> 20 </option>
+                            <option> Lengkap </option>
+                            <option> Belum Lengkap</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>Rekam Jejak Tim Peneliti </td>
+                    <td>Kelengkapan lainnya </td>
                     <td>
-                        <select name="jejak" id='jejak' class="form-control" required >
+                        <select name="lain" id='lain' class="form-control" required >
                             <option value=''>-- Pilih nilai --</option>
-                            <option> 80 </option>
-                            <option> 60 </option>
-                            <option> 40 </option>
-                            <option> 20 </option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Mutu Proposal  </td>
-                    <td>
-                        <select name="mutu" id='mutu' class="form-control" required >
-                            <option value=''>-- Pilih nilai --</option>
-                            <option> 40 </option>
-                            <option> 20 </option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Rasionalitas Alokasi Dana</td>
-                    <td>
-                        <select name="dana" id='dana' class="form-control" required >
-                            <option value=''>-- Pilih nilai --</option>
-                            <option> 40 </option>
-                            <option> 20 </option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Potensi Target Luaran  </td>
-                    <td>
-                        <select name="luaran" id='luaran' class="form-control" required >
-                            <option value=''>-- Pilih nilai --</option>
-                            <option> 60 </option>
-                            <option> 40 </option>
-                            <option> 20 </option>
+                            <option> Lengkap </option>
+                            <option> Belum Lengkap</option>
                         </select>
                     </td>
                 </tr>
@@ -163,6 +104,7 @@ function penilaian($conn){
                         <textarea name='komentar' id='komentar' class="form-control" rows="5" cols='30' required></textarea>
                     </td>
                 </tr>
+                
                 <tr>
                     <td>Status Proposal Penelitian</td>
                     <td>
@@ -186,7 +128,7 @@ function penilaian($conn){
             <div class="panel-footer text-center">
                 <hr>
                 <button type="submit" name='simpan' class="btn btn-success mr-5">Simpan</button>
-                <a href="research_adm_nilai.php" class="btn btn-danger">Batal</a>
+                <a href="pro_pen_nilai.php" class="btn btn-danger">Batal</a>
             </div>
         </form>
 
@@ -196,30 +138,38 @@ function penilaian($conn){
     <?php
     if(isset($_POST['simpan'])){
         $id_research=$id_cari;
-        $urgensi=$_POST['urgensi'];
-        $novelty=$_POST['novelty'];
-        $kaitan=$_POST['kaitan'];
-        $peta=$_POST['peta'];
-        $jejak=$_POST['jejak'];
-        $mutu=$_POST['mutu'];
-        $dana=$_POST['dana'];
-        $luaran=$_POST['luaran'];
+        $cover=$_POST['cover'];
+        $pengesahan=$_POST['pengesahan'];
+        $lain=$_POST['lain'];
         $komentar=$_POST['komentar'];
         $status=$_POST['status'];
 
-        $total= $urgensi+$novelty+$kaitan+$peta+$jejak+$mutu+$dana+$luaran;
-        
-        $query_nilai="INSERT INTO research_nilai_adm(id_research, urgensi, novelty, kaitan, peta, jejak, mutu, dana, luaran, total_nilai, komentar) VALUES ('$id_research','$urgensi','$novelty','$kaitan','$peta','$jejak','$mutu','$dana','$luaran',$total,'$komentar')";
-        $sql_nilai=mysqli_query($conn,$query_nilai);
-        if($sql_nilai){
+
+    //    kondisi untuk insert atau update
+            $queryNilailook="SELECT * FROM proposal_pen WHERE id_research=$id_research";
+            $sqlNilailook=mysqli_query($conn,$queryNilailook);
+            $resNilailook=mysqli_fetch_assoc($sqlNilailook);
+            $cekNilailook=mysqli_num_rows($sqlNilailook);
+
+        if(!$cekNilailook){
+        $query_lngp="INSERT INTO proposal_pen(id_research, cover, pengesahan, lain, komentar) VALUES ('$id_research','$cover','$pengesahan','$lain','$komentar')";
+        $sql_lngp=mysqli_query($conn,$query_lngp);
+        }
+        else {
+            $query_lngp="UPDATE proposal_pen SET cover='$cover',pengesahan='$pengesahan',lain='$lain',komentar='$komentar' WHERE id_research=$id_research";
+            $sql_lngp=mysqli_query($conn,$query_lngp);
+        }
+
+        if($sql_lngp){
             // triger untuk mengubah status pada table research
             mysqli_query($conn,"UPDATE research SET status=$status WHERE id_research=$id_cari");
             // End triger untuk mengubah status pada table research
-            echo "<script> alert ('Berhasil melakukan penilaian'); window.location='research_adm_nilai.php'; </script>";
+            echo "<script> alert ('Berhasil melakukan penilaian'); window.location='pro_pen_nilai.php'; </script>";
         }else{
-            echo "<script> alert ('Terjadi kesalahan penyimpanan data'); window.location='research_adm_nilai.php'; </script>" ;
+            echo "<script> alert ('Terjadi kesalahan penyimpanan data'); window.location='pro_pen_nilai.php'; </script>" ;
         }
     }
+  
     ?>
 <!-- endContainerFluid -->
 </div>
@@ -255,19 +205,21 @@ function view($conn){
       <th>File Proposal</th>
       <th>Tahun</th>
       <th>Status</th>
+      <th>Komentar</th>
       <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
     <?php                          
       $no=0;
-      $query="SELECT research.*, reg.nip, mstr_prodi.prodi, mstr_fakultas.fakultas, status.id_status, status.status_name
+      $query="SELECT research.*, reg.nip, mstr_prodi.prodi, mstr_fakultas.fakultas_name, status.id_status, status.status_name
       FROM research
       INNER JOIN reg ON reg.nidn=research.nidn_ketua
       INNER JOIN mstr_prodi ON mstr_prodi.id_prodi=reg.prodi
       INNER JOIN mstr_fakultas ON mstr_fakultas.id_fakultas=reg.fakultas
       INNER JOIN status ON status.id_status=research.status
-      ORDER BY id_research DESC ";
+      ORDER BY id_research DESC";
+
       $sql=mysqli_query($conn,$query);
       $cek=mysqli_num_rows($sql);
       if(!$cek){
@@ -289,24 +241,31 @@ function view($conn){
         <td><?php echo $hasil['thn_pertama_usulan']; ?></td>
         <td>
          <?php echo $hasil['status_name']; ?></td>
-         </td>
+        </td>
         <td>
+           <?php
+            $id_N_pro=$hasil['id_research'];
 
+            $queryNilaipro="SELECT * FROM proposal_pen WHERE id_research=$id_N_pro";
+            $sqlNilaipro=mysqli_query($conn,$queryNilaipro);
+            $resNilaipro=mysqli_fetch_assoc($sqlNilaipro);
+            $cekNilaipro=mysqli_num_rows($sqlNilaipro);
+
+            echo $resNilaipro['komentar'];
+           ?>
+        </td>
+
+
+        <td>
         <!-- <a href="#" class="btn btn-outline-info btn-sm" role="button">Detail</a> <br> <br> -->
          <?php 
-            $id_N=$hasil['id_research'];
-
-            $queryNilaiAdm="SELECT * FROM research_nilai_adm WHERE id_research=$id_N";
-            $sqlNilaiAdm=mysqli_query($conn,$queryNilaiAdm);
-            $cekNilaiAdm=mysqli_num_rows($sqlNilaiAdm);
-
-            if(!$cekNilaiAdm ){
-               ?>
-                <a href='research_adm_nilai.php?aksi=penilaian&id=<?php echo $hasil['id_research']; ?>' class="btn btn-outline-danger btn-sm" role="button" >Beri Penilaian </a> 
+            if(!$cekNilaipro OR $hasil['status']==3 ){
+            ?>
+                <a href='pro_pen_nilai.php?aksi=penilaian&id=<?php echo $hasil['id_research']; ?>' class="btn btn-outline-danger btn-sm" role="button" >Beri Penilaian </a> 
             <?php
             } else {
                 ?>
-                <a href="printNilaiAdm.php?id=<?php echo $hasil['id_research']; ?>" class="btn btn-outline-info btn-sm" role="button" target="_blank">Lihat Nilai</a> 
+                <a href="pro_pen_nilai_print.php?id=<?php echo $hasil['id_research']; ?>" class="btn btn-outline-info btn-sm" role="button">Lihat</a> 
 
             <?php    
             }
