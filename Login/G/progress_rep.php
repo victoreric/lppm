@@ -24,7 +24,7 @@ if (isset($_GET['aksi'])){
 }
 
 
-// fungsilihat
+// fungsiView
 function view($conn){ 
 ?>
 <!-- Main content starts -->
@@ -43,7 +43,7 @@ function view($conn){
         </div>
         <div class="card-body" style="color:black">
         <div class="panel-body">
-            <table class="table table-bordered table-hover table-responsive-lg">
+            <table class="table table-bordered table-hover table-responsive">
                 <thead>
                 <tr>
                 <th>No.</th>
@@ -104,11 +104,17 @@ function view($conn){
 
                     <td> 
                         <?php 
-                        // $status=$hasil['status'];
+                        $status=$hasil['status'];
                         if($fileLapMaju==""){ 
                         ?>
                             <!-- <a href='csPen.php?aksi=update&id=<?php echo $id_research; ?>'>Ubah </a> -->
                             <a href="progress_rep.php?aksi=tambah&id=<?php echo $id_research; ?>" class="btn btn-danger" role="button">Tambahkan file Laporan</a>
+                        <?php
+                        }
+                        elseif($status>7){
+                        ?>  
+                         <a href='../reviewer/print_nilai_subs.php?id=<?php echo $id_research; ?>' class="btn btn-success btn-sm font-weight-bolder" role="button" role="button" target="_blank">Lihat Nilai </a>
+
                         <?php
                         }
                         else {
@@ -135,6 +141,7 @@ function view($conn){
 </div>
 <?php 
 }
+// End fungsiView
 ?>
 
 <?php
@@ -235,7 +242,10 @@ if(isset($_POST['simpan'])){
 ?>
 <?php
 }
+// end fungsiTambah
 ?>
+
+
 
 <?php
 // fungsiubah
@@ -246,6 +256,7 @@ function ubah($conn){
 
 <?php
 }
+// End Fungsi Ubah
 ?>
 
 

@@ -138,7 +138,6 @@ function view($conn){
         $sql_jd=mysqli_query($conn,$query_jd);
         $hasil_jd=mysqli_fetch_assoc($sql_jd);
         $totaldosen=$hasil_jd['dosen1']+$hasil_jd['dosen2']+$hasil_jd['dosen3']+$hasil_jd['dosen4']+$hasil_jd['dosen5'];
-    
         ?>
             <tr>
                 <td class="font-weight-bold">Anggota Peneliti</td>
@@ -289,8 +288,8 @@ function view($conn){
                             <!-- <option value=''>-- Pilih nilai --</option> -->
                             <option value='4'> Peneliti memiliki rekam jejak penelitian dan terkait dengan penelitian yang diusulkan (memiliki karya internasional bereputasi yang relevan) (4)</option>
                             <option value='3'> Peneliti memiliki rekam jejak penelitian, namun  cukup terkait dengan penelitian yang diusulkan (3) </option>
-                            <option value='Penelitian serupa pernah dilakukan sebelumnya, namun hanya variasi minor (replikasi) (2)'> Peneliti memiliki rekam jejak penelitian, namun  kurang terkait dengan penelitian yang diusulkan  (2)</option>
-                            <option value='Penelitian yang sama pernah dilakukan sebelumnya (1)'> Peneliti memiliki rekam jejak penelitian, namun   tidak terkait dengan penelitian yang diusulkan (1) </option>
+                            <option value='2'> Peneliti memiliki rekam jejak penelitian, namun  kurang terkait dengan penelitian yang diusulkan  (2)</option>
+                            <option value='1'> Peneliti memiliki rekam jejak penelitian, namun   tidak terkait dengan penelitian yang diusulkan (1) </option>
                         </select>
                     </td>
                 </tr>
@@ -363,7 +362,6 @@ function view($conn){
             </td>
         </tr>
 
-       
         <tr>
         <td>Status Proposal Penelitian</td>
             <td>

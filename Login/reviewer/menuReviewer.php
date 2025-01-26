@@ -110,7 +110,7 @@ if($level=='103'){
                     <div id="collapseUsulan" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" href="list_usulan_riset_R.php">Adm. & Substansi</a>
-                            <a class="collapse-item" href="">Laporan Kemajuan</a>
+                            <a class="collapse-item" href="lap_kemajuan.php">Laporan Kemajuan</a>
                             <a class="collapse-item" href="">Laporan Akhir</a>
                         </div>
                     </div>

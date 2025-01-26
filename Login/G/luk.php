@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['nidn_login'])){
-   echo "<script> alert('Anda Belum Login'); window.location='../index'; </script>";
+   echo "<script> alert('Anda Belum Login'); window.location='../index.php'; </script>";
    session_destroy();
 } 
 else {

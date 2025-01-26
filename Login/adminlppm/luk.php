@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Sistem Informasi LPPM Unpatti">
         <meta name="author" content="Victor Pattiradjawane">
-        <title>File Usulan Proposal Penelitian </title>
+        <title>Proposal Penelitian </title>
         <link href="../vendor/css/sb-admin-2.min.css" rel="stylesheet">
     </head>
     <body>

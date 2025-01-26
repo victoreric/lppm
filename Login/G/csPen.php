@@ -308,13 +308,16 @@ function view($conn){
       <th>Judul</th>
       <th>Dana Diusulkan</th>
       <th>File Proposal</th>
+      <th>Status</th>
       <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
     <?php                          
       $no=0;
-      $query="SELECT * FROM research
+      $query="SELECT research.*, status.* 
+            FROM research
+            LEFT JOIN status ON status.id_status=research.status
        WHERE nidn_ketua=$nidn
        ORDER BY id_research DESC";
 
@@ -337,6 +340,9 @@ function view($conn){
         <td> 
             <!-- <a href="luk.php?f=<?php echo $hasil['file_penelitian']; ?>" target='blank'><?php echo $hasil['file_penelitian']?>   -->
             <a href="luk.php?f=<?php echo $hasil['file_penelitian']; ?>" target='blank'>Lihat file 
+        </td>
+        <td>
+            <?php echo $hasil['status_name']; ?>
         </td>
 
         <td>
@@ -492,7 +498,7 @@ function detail($conn){
             <?php 
             $cek_adm=mysqli_num_rows($sql_adm);
             if(!$cek_adm){
-            // echo "... Menunggu ...";
+            echo "... Menunggu ...";
             
             }
             else {
@@ -504,37 +510,6 @@ function detail($conn){
         </td>
 
     </tr>
-   
-    <!-- <tr>
-        <td>3</td>
-        <td>Penilaian Substansi</td>
-        <td>
-        <?php 
-               $query_subs="SELECT * FROM substansi WHERE id_research=$id_research";
-               $sql_subs=mysqli_query($conn,$query_subs);
-               $hasil_subs=mysqli_fetch_assoc($sql_subs);
-
-               echo $hasil_subs['kom_sesuai'];
-            ?>
-        </td>
-
-        <td>
-        <?php 
-            $query_sub="SELECT * FROM substansi WHERE id_research=$id_research";
-            $sql_sub=mysqli_query($conn,$query_sub);
-            $hasil_sub=mysqli_fetch_assoc($sql_sub);
-            $cek_sub=mysqli_num_rows($sql_sub);
-            if(!$cek_sub){
-            echo "... Menunggu ...";
-            }
-            else {
-            ?>
-                <a href="../reviewer/print_nilai_subs.php?id=<?php echo $id_research; ?>" class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat</a>
-            <?php
-            }
-            ?> 
-        </td>
-    </tr> -->
    
     <tr>
         <td>4</td>
@@ -549,7 +524,21 @@ function detail($conn){
         <td>Laporan Kemajuan</td>
         <td> - </td>
         <td>
-            -
+            <?php
+           $queri_lapmaju="SELECT file_lap_maju FROM research WHERE id_research=$id_research";
+           $sql_lapmaju=mysqli_query($conn,$queri_lapmaju);
+           $hasil_lapmaju=mysqli_fetch_assoc($sql_lapmaju); 
+           if($hasil_lapmaju!=0){ 
+            ?>
+              <a href="luk.php?f=<?php echo $hasil['file_lap_maju']; ?>" class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat file
+
+              <!-- <a href="../adminlppm/printNilaiAdm.php?id=<?php echo $id_research; ?>" class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat</a> -->
+            <?php 
+            }
+            else {
+                echo "-";
+            } 
+            ?>
         </td>
     </tr>
     <tr>
@@ -557,7 +546,18 @@ function detail($conn){
         <td>Monev Laporan Kemajuan </td>
         <td> - </td>
         <td>
-            -
+        <?php
+           $queri_monev="SELECT * FROM research_substansi WHERE id_research=$id_research";
+           $sql_monev=mysqli_query($conn,$queri_monev);
+           $hasil_monev=mysqli_fetch_assoc($sql_monev); 
+           if($hasil_monev!=0){ 
+            ?>
+             <a href='../reviewer/print_nilai_subs.php?id=<?php echo $hasil['id_research']; ?>' class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat Nilai </a>
+            <?php }
+            else {
+                echo "-";
+            } 
+            ?>
         </td>
     </tr>
     <tr>
@@ -565,17 +565,31 @@ function detail($conn){
         <td>Laporan Akhir</td>
         <td> - </td>
         <td>
-            -
+        <?php
+           $queri_lapend="SELECT file_lap_akhir FROM research WHERE id_research=$id_research";
+           $sql_lapend=mysqli_query($conn,$queri_lapend);
+           $hasil_lapend=mysqli_fetch_assoc($sql_lapend); 
+        //    echo $hasil_lapend['file_lap_akhir'];
+           if($hasil_lapend['file_lap_akhir']!=''){ 
+            ?>
+              <a href="luk.php?f=<?php echo $hasil['file_lap_akhir']; ?>" class="btn btn-success btn-sm text-reset" role="button" target="_blank">lihat file
+
+            <?php 
+            }
+            else {
+                echo "-";
+            } 
+            ?>
         </td>
     </tr>
-    <tr>
+    <!-- <tr>
         <td>8</td>
         <td>Monev Laporan Akhir</td>
         <td> - </td>
         <td>
             -
         </td>
-    </tr>
+    </tr> -->
     <tr>
         <td>9</td>
         <td>Selesai</td>

@@ -7,7 +7,7 @@ include '../link.php';
 <div class="container-fluid mb-5">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary text-center">PENILAIAN SUBSTANSI PROPOSAL PENELITIAN</h6>
+            <h6 class="m-0 font-weight-bold text-primary text-center">PENILAIAN MONITORING DAN EVALUASI PENELITIAN</h6>
         </div>
         <div class="card-body" style="color:black">
         <table class="table table-bordered table-sm table-borderless">
@@ -137,7 +137,7 @@ include '../link.php';
         <tr>
             <td>Lama Penelitian</td>
             <td>:</td>
-            <td><?php echo $hasil['lama_kegiatan']; ?></td>
+            <td><?php echo $hasil['lama_kegiatan']; ?> Tahun</td>
         </tr>
 
         <tr>
@@ -148,13 +148,18 @@ include '../link.php';
                 <td>:</td>
                 <td>Rp. <?php echo $hasil['dana_usulan']; ?></td>
             </tr>
-     <form method="POST" action="" enctype="multipart/form-data">
             <tr>
+                <td>Dana Direkomendasikan</td>
+                <td>:</td>
+                <td>Rp. <?php echo $hasil['dana_disetujui']; ?></td>
+            </tr>
+     <form method="POST" action="" enctype="multipart/form-data">
+            <!-- <tr>
                 <td>Direkomendasikan</td>
                 <td>:</td>
                 <td> <input type="text" class="form-control" id="dana_disetujui" placeholder="" name="dana_disetujui" onkeydown="return numbersonly(this, event);" onkeyup="javascript:tandaPemisahTitik(this);" required>
                 </td>
-            </tr>
+            </tr> -->
         </tbody>
         </table>
 
@@ -502,7 +507,7 @@ include '../link.php';
                 <select name="status" id='status' class="form-control" required >
                     <option value=''>-- Pilih Status --</option>
                     <?php 
-                $querySta="SELECT * From status WHERE id_status=4 OR id_status=5";
+                $querySta="SELECT * From status WHERE id_status=8";
                 $sqlSta= mysqli_query($conn,$querySta);
                 while ($hasilSta = mysqli_fetch_array($sqlSta))
                 {
@@ -623,17 +628,17 @@ include '../link.php';
 
         // End sub total nilai dan nilai akhir
 
-        $queri_sub="INSERT INTO substansi(id_login, id_research, pub_ir, pub_inter, pub_ns, pub_nas, totalnilai_pub, temu_inter, temu_nas, totalnilai_temu, haki_merek, haki_paten, haki_industri, haki_cipta, haki_geo, haki_sirkuit,totalnilai_haki, buku_mono, buku_ref, buku_chap, buku_ajar, totalnilai_buku, nilai_akhir, kom_sesuai, kom_luaran, kom_lanjut, kom_tkt, kom_ilmu, kom_mk, kom_mhs, kom_kendala, kom_anggaran, kom_lain,date_substansi) VALUES ('$id_login','$id_cari','$pub_ir','$pub_inter','$pub_ns','$pub_nas','$totalnilai_pub','$temu_inter','$temu_nas','$totalnilai_temu','$haki_merek','$haki_paten','$haki_industri','$haki_cipta','$haki_geo','$haki_sirkuit','$totalnilai_haki','$buku_mono','$buku_ref','$buku_chap','$buku_ajar','$totalnilai_buku','$nilai_akhir','$kom_sesuai','$kom_luaran','$kom_lanjut','$kom_tkt','$kom_ilmu','$kom_mk','$kom_mhs','$kom_kendala','$kom_anggaran','$kom_lain','$date_substansi')";
+        $queri_sub="INSERT INTO research_substansi(id_login, id_research, pub_ir, pub_inter, pub_ns, pub_nas, totalnilai_pub, temu_inter, temu_nas, totalnilai_temu, haki_merek, haki_paten, haki_industri, haki_cipta, haki_geo, haki_sirkuit,totalnilai_haki, buku_mono, buku_ref, buku_chap, buku_ajar, totalnilai_buku, nilai_akhir, kom_sesuai, kom_luaran, kom_lanjut, kom_tkt, kom_ilmu, kom_mk, kom_mhs, kom_kendala, kom_anggaran, kom_lain,date_substansi) VALUES ('$id_login','$id_cari','$pub_ir','$pub_inter','$pub_ns','$pub_nas','$totalnilai_pub','$temu_inter','$temu_nas','$totalnilai_temu','$haki_merek','$haki_paten','$haki_industri','$haki_cipta','$haki_geo','$haki_sirkuit','$totalnilai_haki','$buku_mono','$buku_ref','$buku_chap','$buku_ajar','$totalnilai_buku','$nilai_akhir','$kom_sesuai','$kom_luaran','$kom_lanjut','$kom_tkt','$kom_ilmu','$kom_mk','$kom_mhs','$kom_kendala','$kom_anggaran','$kom_lain','$date_substansi')";
 
         $sql_sub=mysqli_query($conn,$queri_sub);
         if($sql_sub){
-            echo "<script> alert ('Berhasil melakukan penilaian substansial');window.location='list_usulan_riset_R.php';</script>"; 
+            echo "<script> alert ('Berhasil melakukan penilaian monitoring dan evaluasi penelitian');window.location='lap_kemajuan.php';</script>"; 
         }else{
-            echo "<script> alert ('Ada Kesalahan saat proses penyimpanan');window.location='list_usulan_riset_R.php';</script>";
+            echo "<script> alert ('Ada Kesalahan saat proses penyimpanan');window.location='lap_kemajuan.php';</script>";
         }
 
-        // ubah dana_rekomendasi dan status yang direkomendasi
-        $sql_dana=mysqli_query($conn,"UPDATE research SET dana_disetujui='$dana_disetujui', status='$status' WHERE id_research=$id_cari");
+        // ubah  status penelitian
+        $sql_status=mysqli_query($conn,"UPDATE research SET status='$status' WHERE id_research=$id_cari");
         // End ubah dana yang direkomendasi
 
     }

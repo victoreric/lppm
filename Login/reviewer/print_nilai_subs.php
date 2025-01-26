@@ -1,19 +1,18 @@
 <?php
 require ('../link.php');
 include '../assets/fungsi.php';
-// require('../libs/fpdf184/fpdf.php');
-require ('../libs/fpdf184/fpdf.php');
+require('../libs/fpdf184/fpdf.php');
 
 
 $id=$_GET['id'];
-$query="SELECT substansi.*, research.*, reg.*, login.id_login, login.nama, login.nip, login.file_ttd, login.file_cap, mstr_prodi.prodi, mstr_fakultas.*    
-        FROM substansi
-        INNER JOIN research ON research.id_research=substansi.id_research
+$query="SELECT research_substansi.*, research.*, reg.*, login.id_login, login.nama, login.nip, login.file_ttd, login.file_cap, mstr_prodi.prodi, mstr_fakultas.*    
+        FROM research_substansi
+        INNER JOIN research ON research.id_research=research_substansi.id_research
         INNER JOIN reg ON reg.nidn=research.nidn_ketua
-        INNER JOIN login ON login.id_login=substansi.id_login
+        INNER JOIN login ON login.id_login=research_substansi.id_login
         INNER JOIN mstr_fakultas ON mstr_fakultas.id_fakultas=reg.fakultas
         INNER JOIN mstr_prodi ON mstr_prodi.id_prodi=reg.prodi
-        WHERE substansi.id_research=$id";
+        WHERE research_substansi.id_research=$id";
 $sql=mysqli_query($conn,$query);
 $hasil=mysqli_fetch_assoc($sql);
 
