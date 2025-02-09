@@ -8,13 +8,13 @@ include '../link.php';
 <div>
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
-    <li class="breadcrumb-item"><a href="#">Penilaian Laporan Kemajuan</a></li>
+    <li class="breadcrumb-item"><a href="#">Penilaian Laporan Akhir</a></li>
   </ul>
 </div>
 <div class="container-fluid mb-5">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h5 class="m-0 font-weight-bold text-primary text-center">Daftar Proposal Penelitian + Laporan Kemajuan</h5>
+            <h5 class="m-0 font-weight-bold text-primary text-center">Daftar Proposal Penelitian + Laporan Akhir</h5>
         </div>
         <div class="card-body table-responsive" style="color:black">
         <table id="example1" class="table table-bordered table-hover">
@@ -27,7 +27,7 @@ include '../link.php';
             <th>Prodi</th>
             <th>Judul</th>
             <th>File Proposal</th>
-            <th>File Laporan Kemajuan</th>
+            <th>File Laporan Akhir</th>
            
             <th>Status</th>
             <th>Aksi</th>
@@ -46,8 +46,8 @@ include '../link.php';
             INNER JOIN mstr_prodi ON mstr_prodi.id_prodi=reg.prodi
             INNER JOIN mstr_fakultas ON mstr_fakultas.id_fakultas=reg.fakultas
             INNER JOIN status ON status.id_status=research.status
-            WHERE status>3 AND status!=5
-            -- WHERE status==4 
+            -- WHERE status!=1 AND status!=3 AND status!=5
+            WHERE status>7
             ORDER BY id_research DESC";
             $sql=mysqli_query($conn,$query);
             $cek=mysqli_num_rows($sql);
@@ -72,14 +72,16 @@ include '../link.php';
                 </td>
                 <td>
                     <?php
-                        $fileLapMaju=$hasil['file_lap_maju'];
+                        $fileLapAkhir=$hasil['file_lap_akhir'];
                         
-                        if($fileLapMaju==""){
-                                echo "-";
-                        }
+                        if($fileLapAkhir==""){ ?>
+                                <h6 class="text-danger">Belum ada laporan akhir </h6>
+
+                        <?php
+                            }
                         else {
                         ?>
-                        <a href="../adminlppm/luk.php?f=<?php echo $hasil['file_lap_maju']; ?>" target='blank'><?php echo $hasil['file_lap_maju']?>  
+                        <a href="../adminlppm/luk.php?f=<?php echo $hasil['file_lap_akhir']; ?>" target='blank'><?php echo $hasil['file_lap_akhir']?>  
 
                         <?php
                         }

@@ -198,12 +198,13 @@ function view($conn){
     <thead class="bg-dark text-white text-center">
       <tr>
       <th>No.</th>
-      <th>NIDN</th>
+      <th>Tahun</th>
       <th>Nama</th>
+      <th>NIDN</th>
       <th>Prodi</th>
       <th>Judul</th>
       <th>File Proposal</th>
-      <th>Tahun</th>
+    
       <th>Status</th>
       <th>Komentar</th>
       <th>Aksi</th>
@@ -230,15 +231,15 @@ function view($conn){
     ?>
       <tr>
         <td><?php echo $no ?></td>
-        <td><?php echo $hasil['nidn_ketua']; ?></td>
+        <td><?php echo $hasil['thn_pertama_usulan']; ?></td>
         <td><?php echo $hasil['nama_ketua']; ?></td>
+        <td><?php echo $hasil['nidn_ketua']; ?></td>
         <td><?php echo $hasil['prodi']; ?></td>
         <td><?php echo $hasil['judul']; ?></td>
         <td>
         <a href="luk.php?f=<?php echo $hasil['file_penelitian']; ?>" target='blank'><?php echo $hasil['file_penelitian']; ?> </a>   
-    
         </td>
-        <td><?php echo $hasil['thn_pertama_usulan']; ?></td>
+        
         <td>
          <?php echo $hasil['status_name']; ?></td>
         </td>

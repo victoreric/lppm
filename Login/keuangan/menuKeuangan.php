@@ -11,9 +11,9 @@ if(!isset($_SESSION['nama_admin'])){
 } 
 
 $level=$_SESSION['level_admin'];
-if($level=='103'){
+if($level=='105'){
     ?>
-    <!-- MenuForAdmin -->
+    <!-- MenuForBendahara -->
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -80,7 +80,7 @@ if($level=='103'){
                         <!-- <i class="fas fa-laugh-wink"></i> -->
                         <img src="../assets/img/unpattilogo.png" width="50px" alt="">
                     </div>
-                    <div class="sidebar-brand-text mx-3">REVIEWER LPPM<sup></sup></div>
+                    <div class="sidebar-brand-text mx-3">BENDAHARA LPPM<sup></sup></div>
                 </a>
 
                 <!-- Divider -->
@@ -90,7 +90,7 @@ if($level=='103'){
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard Reviewer</span></a>
+                        <span>Dashboard Bendahara</span></a>
                 </li>
 
                 <!-- Divider -->
@@ -105,13 +105,13 @@ if($level=='103'){
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsulan"
                         aria-expanded="true" aria-controls="collapseUsulan">
                         <i class="fa fa-th-list fa-chart-area"></i>
-                        <span>Penilaian Proposal</span>
+                        <span>Keuangan Penelitian</span>
                     </a>
                     <div id="collapseUsulan" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="list_usulan_riset_R.php">Adm. & Substansi</a>
-                            <a class="collapse-item" href="lap_kemajuan.php">Laporan Kemajuan</a>
-                            <a class="collapse-item" href="lap_akhir.php">Laporan Akhir</a>
+                            <a class="collapse-item" href="list_usulan_riset_R.php">Pencairan Dana</a>
+                            <a class="collapse-item" href="lap_kemajuan.php">Bukti Laporan Keuangan</a>
+                            <!-- <a class="collapse-item" href="lap_akhir.php">Laporan Akhir</a> -->
                         </div>
                     </div>
                 </li>

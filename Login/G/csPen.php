@@ -24,8 +24,6 @@ if (isset($_GET['aksi'])){
 }
 
 
-
-
 // fungsilihat
 function lihat($conn){ 
 ?>
@@ -303,8 +301,8 @@ function view($conn){
       <tr>
       <th>No.</th>
       <th>Tahun Pengusulan</th>
-      <th>NIDN</th>
       <th>Nama</th>
+      <th>NIDN</th>
       <th>Judul</th>
       <th>Dana Diusulkan</th>
       <th>File Proposal</th>
@@ -332,9 +330,11 @@ function view($conn){
     ?>
       <tr>
         <td><?php echo $no ?></td>
-        <td><?php echo $hasil['thn_usulan_kegiatan']; ?></td>
         <td><?php echo $hasil['nidn_ketua']; ?></td>
         <td><?php echo $hasil['nama_ketua']; ?></td>
+        <td><?php echo $hasil['thn_usulan_kegiatan']; ?></td>
+        
+       
         <td><?php echo $hasil['judul']; ?></td>
         <td><?php echo $hasil['dana_usulan']; ?></td>
         <td> 
@@ -346,7 +346,9 @@ function view($conn){
         </td>
 
         <td>
-          <a href='csPen.php?aksi=detail&id=<?php echo $id_research; ?>' >Detail </a> 
+          <!-- <a href='csPen.php?aksi=detail&id=<?php echo $id_research; ?>' >Detail </a>  -->
+
+          <a href="csPen.php?aksi=detail&id=<?php echo $id_research; ?>" class="btn btn-info btn-sm text-reset" role="button">Detail</a>
          </td>
 
       </tr>
@@ -456,7 +458,7 @@ function detail($conn){
             <?php 
             $id_riset_pro_pen= $hasil['id_research'];
 
-            $query_kom="SELECT komentar FROM proposal_pen WHERE `id_research`=$id_riset_pro_pen";
+            $query_kom="SELECT komentar FROM proposal_pen WHERE id_research=$id_riset_pro_pen";
             $sql_kom=mysqli_query($conn,$query_kom);
             $res_kom=mysqli_fetch_assoc($sql_kom);
 
@@ -503,7 +505,8 @@ function detail($conn){
             }
             else {
             ?>
-                <a href="../adminlppm/printNilaiAdm.php?id=<?php echo $id_research; ?>" class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat</a>
+                <!-- <a href="../adminlppm/printNilaiAdm.php?id=<?php echo $id_research; ?>" class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat</a> -->
+                <a href='../reviewer/research_adm_subs_print.php?id=<?php echo $hasil['id_research']; ?>' class="btn btn-success btn-sm font-weight-bolder" role="button" role="button" target="_blank">Lihat Nilai </a>
             <?php
             }
             ?> 
@@ -512,15 +515,29 @@ function detail($conn){
     </tr>
    
     <tr>
-        <td>4</td>
+        <td>3</td>
         <td>Pencairan Dana</td>
         <td> - </td>
         <td>
-           -
+        <?php
+           $queri_dana="SELECT * FROM dana_penelitian WHERE id_research=$id_research";
+           $sql_dana=mysqli_query($conn,$queri_dana);
+           $hasil_dana=mysqli_fetch_assoc($sql_dana); 
+           if($hasil_dana!=0){ 
+            ?>
+             <!-- <a href='../reviewer/print_nilai_subs.php?id=<?php echo $hasil['id_research']; ?>' class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat Nilai </a> -->
+
+             <a href="luk_danaCair.php?f=<?php echo $hasil_dana['bukti_cair']; ?>" class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat Nilai </a> 
+
+            <?php }
+            else {
+                echo "-";
+            } 
+            ?>
         </td>
     </tr>
     <tr>
-        <td>5</td>
+        <td>4</td>
         <td>Laporan Kemajuan</td>
         <td> - </td>
         <td>
@@ -528,11 +545,9 @@ function detail($conn){
            $queri_lapmaju="SELECT file_lap_maju FROM research WHERE id_research=$id_research";
            $sql_lapmaju=mysqli_query($conn,$queri_lapmaju);
            $hasil_lapmaju=mysqli_fetch_assoc($sql_lapmaju); 
-           if($hasil_lapmaju!=0){ 
+           if($hasil_lapmaju['file_lap_maju']!=''){ 
             ?>
-              <a href="luk.php?f=<?php echo $hasil['file_lap_maju']; ?>" class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat file
-
-              <!-- <a href="../adminlppm/printNilaiAdm.php?id=<?php echo $id_research; ?>" class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat</a> -->
+              <a href="luk.php?f=<?php echo $hasil_lapmaju['file_lap_maju']; ?>" class="btn btn-success btn-sm text-reset" role="button" target="_blank">Lihat </a>
             <?php 
             }
             else {
@@ -542,7 +557,7 @@ function detail($conn){
         </td>
     </tr>
     <tr>
-        <td>6</td>
+        <td>5</td>
         <td>Monev Laporan Kemajuan </td>
         <td> - </td>
         <td>
@@ -561,7 +576,7 @@ function detail($conn){
         </td>
     </tr>
     <tr>
-        <td>7</td>
+        <td>6</td>
         <td>Laporan Akhir</td>
         <td> - </td>
         <td>
@@ -591,7 +606,7 @@ function detail($conn){
         </td>
     </tr> -->
     <tr>
-        <td>9</td>
+        <td>7</td>
         <td>Selesai</td>
         <td> - </td>
         <td>

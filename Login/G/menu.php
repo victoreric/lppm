@@ -112,7 +112,7 @@ if($level=='101'){
                             <h6 class="collapse-header">Proposal:</h6>
                             <a class="collapse-item" href="propen.php"> Pengajuan Baru</a>
                             <a class="collapse-item" href="progress_rep.php">Laporan Kemajuan</a>
-                            <a class="collapse-item" href="">Laporan Akhir</a> 
+                            <a class="collapse-item" href="final_rep.php">Laporan Akhir</a> 
                             <a class="collapse-item" href="">Laporan Keuangan</a>
                             <!-- <a class="collapse-item" href="#">Lainnya</a> -->
                         </div>

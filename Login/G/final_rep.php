@@ -32,14 +32,14 @@ function view($conn){
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
     <li class="breadcrumb-item"><a href="cspen.php">Proposal</a></li>
-    <li class="breadcrumb-item"><a href="#.php">Laporan Kemajuan</a></li>
+    <li class="breadcrumb-item"><a href="#.php">Laporan Akhir</a></li>
   </ul>
 </div>
 
 <div class="container-fluid mb-5">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary text-center">Laporan Kemajuan</h6>
+            <h6 class="m-0 font-weight-bold text-primary text-center">Laporan Akhir</h6>
         </div>
         <div class="card-body" style="color:black">
         <div class="panel-body">
@@ -48,12 +48,12 @@ function view($conn){
                 <tr>
                 <th>No.</th>
                 <th>Tahun Pengusulan</th>
-                <th>NIDN</th>
                 <th>Nama</th>
+                <th>NIDN</th>
                 <th>Judul</th>
                 <th>Dana Diusulkan</th>
                 <th>Dana Disetujui</th>
-                <th>File Laporan Kemajuan</th>
+                <th>File Laporan Akhir</th>
                 <th>Aksi</th>
                 <th>Status</th>
                 </tr>
@@ -81,21 +81,21 @@ function view($conn){
                 <tr>
                     <td><?php echo $no ?></td>
                     <td><?php echo $hasil['thn_usulan_kegiatan']; ?></td>
-                    <td><?php echo $hasil['nidn_ketua']; ?></td>
                     <td><?php echo $hasil['nama_ketua']; ?></td>
+                    <td><?php echo $hasil['nidn_ketua']; ?></td>
                     <td><?php echo $hasil['judul']; ?></td>
                     <td><?php echo $hasil['dana_usulan']; ?></td>
                     <td><?php echo $hasil['dana_disetujui']; ?></td>
                     <td> 
                         <?php
-                       $fileLapMaju=$hasil['file_lap_maju'];
+                       $fileLapAkhir=$hasil['file_lap_akhir'];
                         
-                        if($fileLapMaju==""){
+                        if($fileLapAkhir==""){
                                 echo "-";
                         }
                         else {
                         ?>
-                        <a href="luk.php?f=<?php echo $hasil['file_lap_maju']; ?>" target='blank'><?php echo $hasil['file_lap_maju']?>  
+                        <a href="luk.php?f=<?php echo $hasil['file_lap_akhir']; ?>" target='blank'><?php echo $hasil['file_lap_akhir']?>  
 
                         <?php
                         }
@@ -105,10 +105,10 @@ function view($conn){
                     <td> 
                         <?php 
                         $status=$hasil['status'];
-                        if($fileLapMaju==""){ 
+                        if($fileLapAkhir==""){ 
                         ?>
                             <!-- <a href='csPen.php?aksi=update&id=<?php echo $id_research; ?>'>Ubah </a> -->
-                            <a href="progress_rep.php?aksi=tambah&id=<?php echo $id_research; ?>" class="btn btn-danger" role="button">Tambahkan file Laporan</a>
+                            <a href="final_rep.php?aksi=tambah&id=<?php echo $id_research; ?>" class="btn btn-danger" role="button">Tambahkan file Laporan</a>
                         <?php
                         }
                         elseif($status>7){
@@ -120,7 +120,7 @@ function view($conn){
                         else {
                         ?>
                             <!-- <a href='csPen.php?aksi=lihat&id_cari=<?php echo $id_research; ?>'>Lihat </a>  -->
-                            <a href="progress_rep.php?aksi=ubah&id_cari=<?php echo $id_research; ?>" class="btn btn-info" role="button">ubah</a> 
+                            <a href="final_rep.php?aksi=ubah&id_cari=<?php echo $id_research; ?>" class="btn btn-info" role="button">ubah</a> 
                            
                         <?php
                         }
@@ -153,7 +153,7 @@ function tambah($conn){
 <div>
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.php"><i class="fas fa-home"></i></a></li>
-    <li class="breadcrumb-item"><a href="csPen.php">Upload Laporan Kemajuan</a></li>
+    <li class="breadcrumb-item"><a href="final_rep.php">Upload Laporan Akhir</a></li>
     <!-- <li class="breadcrumb-item"><a href="#">Edit Proposal Penelitian</a></li> -->
   </ul>
 </div>
@@ -167,7 +167,7 @@ $id_research=$_GET['id'];
 
 <div class="container">
 <div class="card">
-  <div class="card-header text-center">Proposal Penelitian</div>
+  <div class="card-header text-center">Upload Laporan Akhir Penelitian</div>
   <div class="card-body">
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="panel-body">
@@ -182,10 +182,10 @@ $id_research=$_GET['id'];
                 </div>
 
                 <div class="card mb-3">
-                    <div class="card-header bg-warning p-2"><h6>Upload Laporan Kemajuan Penelitian</h6>
+                    <div class="card-header bg-warning p-2"><h6>Upload Laporan Akhir Penelitian</h6>
                         Petunjuk upload file:
                         <ul>
-                            <li>File berisi Laporan Kemajuan penelitian, dilengkapi halaman pengesahan oleh Dekan dan Ketua LPPM Unpatti</li>
+                            <li>File berisi laporan akhir penelitian</li>
                             <li>hanya menerima type file pdf</li>
                             <li>besar file pdf <= 3 MB</li>
                             <li>nama file tidak lebih dari 30 karakter</li>
@@ -193,8 +193,8 @@ $id_research=$_GET['id'];
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="file_lap_maju" class="form-control-label">Laporan Kemajuan Penelitian:</label>
-                            <input type="file" class="form-control" id="file_lap_maju" accept=".pdf" placeholder="" name="file_lap_maju" required>
+                            <label for="file_lap_akhir" class="form-control-label">Laporan Akhir Penelitian:</label>
+                            <input type="file" class="form-control" id="file_lap_akhir" accept=".pdf" placeholder="" name="file_lap_akhir" required>
                         </div>
                       
                     </div>
@@ -209,7 +209,7 @@ $id_research=$_GET['id'];
                 <hr>  
                 <div class="panel-footer mt-5 text-center">
                     <button type="submit" name='simpan' class="btn btn-success  mr-5">Simpan</button>
-                    <a href="csPen.php" class="btn btn-danger">Batal</a>
+                    <a href="final_rep.php" class="btn btn-danger">Batal</a>
                  </div>
             </div>
         </form>
@@ -221,22 +221,20 @@ $id_research=$_GET['id'];
 include '../link.php';
 
 if(isset($_POST['simpan'])){
-     $file_lap_maju=$_FILES['file_lap_maju']['name'];
-     $tmp=$_FILES['file_lap_maju']['tmp_name'];
+     $file_lap_akhir=$_FILES['file_lap_akhir']['name'];
+     $tmp=$_FILES['file_lap_akhir']['tmp_name'];
      $unik=$_SESSION['nidn_login'];
-     $file_lap_maju_name = $unik.$file_lap_maju ;
-     $path='files/penelitian/'.$file_lap_maju_name;
+     $file_lap_akhir_name = $unik.$file_lap_akhir ;
+     $path='files/penelitian/'.$file_lap_akhir_name;
 
      if(move_uploaded_file($tmp, $path))
     {
-        // update file laporan dan status penelitian
-        $query_lap="UPDATE research SET file_lap_maju='$file_lap_maju_name', status='7' WHERE id_research=$id_research";
+        $query_lap="UPDATE research SET file_lap_akhir='$file_lap_akhir_name', status='9' WHERE id_research=$id_research";
         $sql_lap=mysqli_query($conn,$query_lap);
-
         if($sql_lap){
-            echo "<script> alert ('Laporan Kemajuan telah diterima. Silahkan menunggu hasil verifikasi '); window.location='csPen.php'; </script>" ;
+            echo "<script> alert ('Laporan Akhir telah diterima. Silahkan menunggu hasil verifikasi '); window.location='csPen.php'; </script>" ;
         }else{
-            echo "<script> alert ('Terjadi kesalahan penyimpanan data '); window.location='propen.php'; </script>" ;
+            echo "<script> alert ('Terjadi kesalahan penyimpanan data '); window.location='final_rep.php'; </script>" ;
         }
 
     }
@@ -252,9 +250,7 @@ if(isset($_POST['simpan'])){
 <?php
 // fungsiubah
 function ubah($conn){ 
-    // echo "ubah";
-  echo "<script>  window.location='progress_rep.php' </script>";
-
+    echo "ubah";
 ?>
 
 

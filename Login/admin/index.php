@@ -51,7 +51,7 @@
             <div class="row">
                 <!-- <div class="col-lg-6 d-none d-lg-block bg-login-hrd_vic"> -->
                 <div class="col-lg-6">
-                <img src="../assets/img/adminPic.jpg" alt="login" class="col-lg-12 d-none d-lg-block">    
+                <img src="../assets/img/admin-1.png" alt="login" class="col-lg-12 d-none d-lg-block">    
                 </div>
          
     <div class="col-lg-6">
@@ -148,6 +148,9 @@
         }
         elseif($_SESSION['level_admin']=='104' && $_SESSION['active_admin']=='Y'){
             header('location:../adminlppm/index.php');
+        }
+        elseif($_SESSION['level_admin']=='105' && $_SESSION['active_admin']=='Y'){
+            header('location:../keuangan/index.php');
         }
 		else {
 			session_destroy();

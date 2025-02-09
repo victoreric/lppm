@@ -346,6 +346,12 @@ $pdf->Cell(11,7,$hasil['total_nilai'],1);
 $pdf->Ln();
 //endSimpleTable
 
+// komentar
+$pdf->SetFont('Times','',12);
+$pdf->Cell(50,6,'Komentar dari Reviewer :');
+$pdf->MultiCell(180,6,$hasil['komentar']);
+// $pdf->MultiCell(160,5, $hasil['target_tkt']);
+
 
 $pdf->SetFont('Times','',12);
 $tgl=$hasil['date_signature'];
@@ -353,9 +359,8 @@ $date_signature=tanggal_indo($tgl);
 
 $pdf->Ln(10);
 $pdf->SetLeftMargin(180);
-// $pdf->Cell(50,6,'Ambon, '.date('d M Y'));
-$date_ttd=date('d M Y');
-$pdf->Cell(50,6,'Ambon, '.$date_ttd);
+
+$pdf->Cell(50,6,'Ambon, '.$date_signature);
 $pdf->Ln();
 
 $pdf->Cell(50,6,'Ketua');
@@ -363,22 +368,16 @@ $pdf->Ln(30);
 
 $ttd=$hasil['ttd'];
 $cap=$hasil['cap'];
-$pdf->Image("../assets/img/ttdVictor.png",195,108,35);
-// if(!$ttd){
-//     echo "";
-// }else{
+$pdf->Image("../assets/img/ttdVictor.png",190,120,35);
 
-// $pdf->Image('../assets/img/ttd.jpeg',132,232,35);
-// $pdf->Image("../assets/img/".$cap. "",109,222,35);
-// }
 
 $pdf->Ln();
 
 $pdf->SetFont('Times','B','12');
-$pdf->Cell(50,6,'Prof. Dr. Melianus Salakory, M.Kes');
+$pdf->Cell(50,6,'Dr. E. K. Huliselan, M.Si');
 $pdf->Ln();
 $pdf->SetFont('Times','',12);
-$pdf->Cell(50,6,'NIP: 196112061988031002');
+$pdf->Cell(50,6,'NIP: 19760804 200112 1 002');
 
 $pdf->Image('../assets/img/blu.png',180,260,15);
 

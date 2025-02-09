@@ -21,12 +21,12 @@ include '../link.php';
             <thead class="bg-dark text-white">
             <tr>
             <th>No.</th>
-            <th>NIDN</th>
+            <th>Tahun</th>
             <th>Nama</th>
+            <th>NIDN</th>
             <th>Prodi</th>
             <th>Judul</th>
             <th>File Proposal</th>
-            <th>Tahun</th>
             <th>Status</th>
             <th>Aksi</th>
             </tr>
@@ -45,7 +45,7 @@ include '../link.php';
             INNER JOIN mstr_fakultas ON mstr_fakultas.id_fakultas=reg.fakultas
             INNER JOIN status ON status.id_status=research.status
             WHERE status!=1 AND status!=3
-            ORDER BY thn_usulan_kegiatan DESC";
+            ORDER BY id_research DESC ";
             $sql=mysqli_query($conn,$query);
             $cek=mysqli_num_rows($sql);
             if(!$cek){
@@ -56,16 +56,16 @@ include '../link.php';
             ?>
             <tr>
                 <td><?php echo $no ?></td>
-                <td><?php echo $hasil['nidn_ketua']; ?></td>
+                <td> <?php echo $hasil['thn_pertama_usulan']; ?> </td>
                 <td><?php echo $hasil['nama_ketua']; ?></td>
+                <td><?php echo $hasil['nidn_ketua']; ?></td>
+                
                 <td><?php echo $hasil['prodi']; ?></td>
                 <td><?php echo $hasil['judul']; ?></td>
                 <td>
                     <a href="../adminlppm/luk.php?f=<?php echo $hasil['file_penelitian']; ?>" target='blank'><?php echo $hasil['file_penelitian']; ?> </a>   
                 </td>
-                <td>
-                    <?php echo $hasil['thn_pertama_usulan']; ?>
-                </td>
+              
                 <td>
                     <?php echo $hasil['status_name']; ?>
                 </td>
